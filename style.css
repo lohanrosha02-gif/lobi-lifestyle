@@ -1,0 +1,823 @@
+/* =========================================================
+   RESPONSIVIDADE LOBI
+   TABLET + CELULAR
+   ========================================================= */
+
+
+/* TABLETS E TELAS MENORES */
+@media (max-width: 900px) {
+
+    /* HEADER */
+
+    .header {
+        height: 70px;
+        padding: 0 5%;
+    }
+
+    .brand img {
+        width: 90px;
+        max-height: 48px;
+        object-fit: contain;
+    }
+
+    .nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        background: rgba(5, 5, 5, 0.98);
+
+        padding: 30px 5%;
+
+        flex-direction: column;
+
+        gap: 25px;
+
+        display: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .icon-btn {
+        display: none;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        width: 100%;
+
+        min-height: calc(100svh - 70px);
+
+        padding:
+            80px 6%
+            70px;
+
+        display: flex;
+
+        align-items: center;
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        position: relative;
+
+        z-index: 3;
+    }
+
+    .eyebrow {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 22px;
+    }
+
+
+    /* TÍTULO PRINCIPAL */
+
+    .hero h1 {
+        width: 100%;
+
+        max-width: 100%;
+
+        font-size: clamp(
+            48px,
+            12vw,
+            95px
+        );
+
+        line-height: 0.88;
+
+        letter-spacing: -3px;
+
+        overflow-wrap: normal;
+
+        word-break: normal;
+    }
+
+
+    .hero h1 span {
+        color: var(--green);
+    }
+
+
+    .hero h1 span::after {
+        width: 8px;
+        height: 8px;
+
+        margin-left: 8px;
+    }
+
+
+    /* DESCRIÇÃO */
+
+    .hero-description {
+        max-width: 420px;
+
+        margin:
+            30px 0
+            35px;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    /* TEXTO LATERAL */
+
+    .hero-side {
+        position: absolute;
+
+        top: auto;
+        right: 6%;
+        bottom: 40px;
+
+        font-size: 7px;
+
+        letter-spacing: 3px;
+
+        line-height: 2;
+
+        opacity: 0.8;
+    }
+
+
+    .hero-side::before {
+        height: 38px;
+
+        left: -13px;
+
+        background: var(--red);
+    }
+
+
+    /* DETALHES */
+
+    .hero-detail.green {
+        width: 60px;
+
+        top: 15%;
+        right: 7%;
+    }
+
+
+    .hero-detail.red {
+        width: 100px;
+
+        height: 4px;
+
+        bottom: 16%;
+        right: -30px;
+
+        opacity: 0.8;
+    }
+
+
+    /* LOBI GIGANTE NO FUNDO */
+
+    .hero::after {
+        font-size: 32vw;
+
+        right: -3vw;
+
+        bottom: 3%;
+
+        opacity: 1;
+    }
+
+
+    /* PRODUTOS */
+
+    .products-section {
+        padding:
+            90px 5%;
+    }
+
+
+    .section-heading {
+        display: block;
+    }
+
+
+    .section-heading > p {
+        margin-top: 15px;
+    }
+
+
+    .products-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    /* MODAL */
+
+    .product-modal {
+        grid-template-columns: 1fr;
+    }
+
+
+    .modal-image {
+        min-height: 450px;
+    }
+
+
+    .modal-info {
+        padding: 40px 25px;
+    }
+
+
+    /* MANIFESTO */
+
+    .manifesto-tags {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* HEADER */
+
+    .header {
+        height: 65px;
+
+        padding:
+            0 18px;
+    }
+
+
+    .brand img {
+        width: 78px;
+
+        max-height: 43px;
+    }
+
+
+    .header-actions {
+        gap: 12px;
+    }
+
+
+    .cart-button {
+        font-size: 8px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .cart-button span {
+        width: 20px;
+        height: 20px;
+
+        margin-left: 4px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height:
+            calc(100svh - 65px);
+
+        padding:
+            65px 20px
+            90px;
+
+        align-items: flex-start;
+    }
+
+
+    .hero-content {
+        width: 100%;
+
+        margin-top: 5vh;
+    }
+
+
+    /* DROP 01 */
+
+    .hero .eyebrow {
+        font-size: 7px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 18px;
+
+        white-space: nowrap;
+    }
+
+
+    /* =========================================
+       TÍTULO PRINCIPAL
+       NÃO É SÓ ROUPA. É PRESENÇA.
+       ========================================= */
+
+    .hero h1 {
+        width: 100%;
+
+        font-size: clamp(
+            47px,
+            15vw,
+            72px
+        );
+
+        line-height: 0.88;
+
+        letter-spacing: -3px;
+
+        word-break: keep-all;
+
+        overflow-wrap: normal;
+    }
+
+
+    .hero h1 span {
+        display: inline-block;
+
+        color: var(--green);
+    }
+
+
+    .hero h1 span::after {
+        width: 7px;
+        height: 7px;
+
+        margin-left: 6px;
+    }
+
+
+    /* TEXTO ABAIXO */
+
+    .hero-description {
+        width: 90%;
+
+        max-width: 350px;
+
+        margin:
+            28px 0
+            30px;
+
+        font-size: 11px;
+
+        line-height: 1.7;
+    }
+
+
+    /* BOTÃO */
+
+    .primary-button {
+        min-width: 190px;
+
+        padding:
+            17px 20px;
+
+        gap: 35px;
+
+        font-size: 9px;
+    }
+
+
+    /* =========================================
+       ESTILO / ATITUDE / IDENTIDADE
+       ========================================= */
+
+    .hero-side {
+        position: absolute;
+
+        right: 20px;
+        bottom: 25px;
+        top: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        font-size: 6px;
+
+        letter-spacing: 2.5px;
+
+        line-height: 1.9;
+
+        z-index: 4;
+    }
+
+
+    .hero-side::before {
+        width: 2px;
+
+        height: 34px;
+
+        left: -11px;
+
+        top: 2px;
+
+        background: var(--red);
+    }
+
+
+    /* =========================================
+       LOBI ENORME NO FUNDO
+       ========================================= */
+
+    .hero::after {
+        content: "LOBI";
+
+        position: absolute;
+
+        right: -7vw;
+
+        bottom: 5%;
+
+        font-size: 38vw;
+
+        line-height: 1;
+
+        letter-spacing: -8px;
+
+        color:
+            rgba(
+                255,
+                255,
+                255,
+                0.022
+            );
+
+        pointer-events: none;
+
+        white-space: nowrap;
+    }
+
+
+    /* BRILHO VERMELHO */
+
+    .hero::before {
+        width: 280px;
+
+        height: 280px;
+
+        right: -200px;
+
+        bottom: -80px;
+
+        filter: blur(70px);
+    }
+
+
+    /* LINHA VERDE */
+
+    .hero-detail.green {
+        width: 45px;
+
+        height: 2px;
+
+        top: 14%;
+
+        right: 5%;
+
+        transform: rotate(-15deg);
+    }
+
+
+    /* LINHA VERMELHA */
+
+    .hero-detail.red {
+        width: 85px;
+
+        height: 3px;
+
+        right: -25px;
+
+        bottom: 16%;
+
+        transform: rotate(-45deg);
+    }
+
+
+    /* MARQUEE */
+
+    .marquee {
+        padding:
+            16px 0;
+    }
+
+
+    .marquee div {
+        font-size: 7px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .marquee span {
+        margin:
+            0 15px;
+    }
+
+
+    /* PRODUTOS */
+
+    .products-section {
+        padding:
+            75px 15px;
+    }
+
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+
+    .section-heading h2 {
+        font-size:
+            clamp(
+                40px,
+                14vw,
+                60px
+            );
+
+        letter-spacing: -2px;
+    }
+
+
+    .section-heading > p {
+        max-width: 300px;
+
+        font-size: 9px;
+
+        line-height: 1.7;
+    }
+
+
+    /* FILTROS */
+
+    .filters {
+        gap: 7px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .filter {
+        padding:
+            10px 13px;
+
+        font-size: 7px;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* GRID */
+
+    .products-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 8px;
+    }
+
+
+    .product-image {
+        width: 100%;
+
+        aspect-ratio: 4 / 5;
+    }
+
+
+    .product-info {
+        padding:
+            12px 2px
+            25px;
+    }
+
+
+    .product-info h3 {
+        font-size: 9px;
+
+        line-height: 1.45;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    .product-info p {
+        font-size: 10px;
+
+        margin-top: 7px;
+    }
+
+
+    .product-tag {
+        top: 7px;
+        left: 7px;
+
+        padding:
+            5px 6px;
+
+        font-size: 6px;
+    }
+
+
+    /* MANIFESTO */
+
+    .manifesto {
+        min-height: 70vh;
+
+        padding:
+            90px 20px;
+    }
+
+
+    .manifesto h2 {
+        font-size:
+            clamp(
+                45px,
+                15vw,
+                70px
+            );
+
+        line-height: 0.92;
+
+        letter-spacing: -3px;
+    }
+
+
+    .manifesto > p:not(.eyebrow) {
+        margin-top: 25px;
+
+        font-size: 11px;
+
+        line-height: 1.7;
+    }
+
+
+    .manifesto-tags {
+        margin-top: 45px;
+
+        gap: 15px;
+
+        font-size: 7px;
+
+        letter-spacing: 3px;
+    }
+
+
+    /* MODAL PRODUTO */
+
+    .modal-overlay {
+        padding: 0;
+    }
+
+
+    .product-modal {
+        width: 100%;
+
+        height: 100%;
+
+        max-height: 100svh;
+
+        display: block;
+    }
+
+
+    .modal-image {
+        width: 100%;
+
+        min-height: 48svh;
+
+        height: 48svh;
+    }
+
+
+    .modal-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    .modal-info {
+        padding:
+            30px 20px
+            50px;
+    }
+
+
+    .modal-info h2 {
+        font-size: 27px;
+    }
+
+
+    /* CARRINHO */
+
+    .cart {
+        width: 100%;
+
+        padding:
+            25px 20px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        padding:
+            60px 20px;
+
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+
+    .footer-brand img {
+        width: 100px;
+    }
+
+}
+
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            clamp(
+                43px,
+                14.5vw,
+                57px
+            );
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero-description {
+        width: 95%;
+
+        font-size: 10px;
+    }
+
+
+    .hero-side {
+        right: 16px;
+    }
+
+
+    .products-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
