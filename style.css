@@ -1,0 +1,2402 @@
+/* =========================================================
+   LOBI LIFESTYLE
+   STYLE.CSS
+   Identidade:
+   Preto + Branco + Verde Neon + Vermelho
+   ========================================================= */
+
+
+/* =========================================================
+   FONTES
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
+
+:root {
+
+    --black: #050505;
+
+    --black-soft: #0a0a0a;
+
+    --black-card: #0d0d0d;
+
+    --gray: #151515;
+
+    --gray-2: #1d1d1d;
+
+    --gray-light: #9a9a9a;
+
+    --white: #f4f4f1;
+
+    --green: #b7ff00;
+
+    --green-hover: #c7ff38;
+
+    /*
+       Vermelho ganhou um pouco mais
+       de presença, sem dominar o site.
+    */
+
+    --red: #ef2b20;
+
+    --red-dark: #9e1712;
+
+    --red-soft: rgba(239, 43, 32, 0.12);
+
+    --border: rgba(255, 255, 255, 0.12);
+
+    --border-red: rgba(239, 43, 32, 0.30);
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: var(--black);
+
+    color: var(--white);
+
+    font-family: "Inter", sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+body::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+
+body::-webkit-scrollbar-track {
+
+    background: #050505;
+
+}
+
+
+body::-webkit-scrollbar-thumb {
+
+    background: #292929;
+
+}
+
+
+body::-webkit-scrollbar-thumb:hover {
+
+    background: var(--red);
+
+}
+
+
+button,
+input {
+
+    font: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+img {
+
+    max-width: 100%;
+
+    display: block;
+
+}
+
+
+/* =========================================================
+   SELEÇÃO
+   ========================================================= */
+
+::selection {
+
+    background: var(--green);
+
+    color: black;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+
+    height: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    background: rgba(5, 5, 5, 0.94);
+
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+/* =========================================================
+   LOGO OFICIAL
+   Agora usamos imagem, não texto.
+   ========================================================= */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.brand img {
+
+    width: 115px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+
+}
+
+
+.brand:hover img {
+
+    transform: scale(1.03);
+
+    opacity: 0.92;
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+.nav {
+
+    display: flex;
+
+    gap: 40px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.nav a {
+
+    position: relative;
+
+    transition: color 0.3s ease;
+
+}
+
+
+.nav a:hover {
+
+    color: white;
+
+}
+
+
+.nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -9px;
+
+    left: 0;
+
+    width: 0;
+
+    height: 2px;
+
+    background: var(--green);
+
+    transition: width 0.3s ease;
+
+}
+
+
+.nav a:hover::after {
+
+    width: 100%;
+
+}
+
+
+/*
+   Pequeno detalhe vermelho.
+*/
+
+.nav a:nth-child(2)::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    right: -9px;
+
+    top: -3px;
+
+}
+
+
+/* =========================================================
+   AÇÕES DO HEADER
+   ========================================================= */
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.icon-btn,
+.cart-button,
+.menu-button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+}
+
+
+.icon-btn {
+
+    font-size: 22px;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.icon-btn:hover {
+
+    color: var(--green);
+
+}
+
+
+.cart-button {
+
+    text-transform: uppercase;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.cart-button span {
+
+    background: var(--green);
+
+    color: black;
+
+    width: 22px;
+
+    height: 22px;
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    margin-left: 7px;
+
+    font-weight: 700;
+
+}
+
+
+.menu-button {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+
+    min-height: calc(100vh - 85px);
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 8%;
+
+    overflow: hidden;
+
+}
+
+
+/*
+   LOBI gigante quase invisível.
+*/
+
+.hero::after {
+
+    content: "LOBI";
+
+    position: absolute;
+
+    right: -40px;
+
+    bottom: -80px;
+
+    font-family: "Archivo Black";
+
+    font-size: 25vw;
+
+    color: rgba(255, 255, 255, 0.018);
+
+    pointer-events: none;
+
+}
+
+
+/*
+   Pequeno brilho vermelho.
+*/
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    right: -300px;
+
+    bottom: -200px;
+
+    border-radius: 50%;
+
+    background: rgba(239, 43, 32, 0.07);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+}
+
+
+.hero-content {
+
+    max-width: 900px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================================
+   TEXTOS AUXILIARES
+   ========================================================= */
+
+.eyebrow {
+
+    color: var(--gray-light);
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.hero h1 {
+
+    font-family: "Archivo Black";
+
+    font-size: clamp(55px, 8vw, 125px);
+
+    line-height: 0.87;
+
+    letter-spacing: -5px;
+
+    text-transform: uppercase;
+
+}
+
+
+.hero h1 span {
+
+    color: var(--green);
+
+}
+
+
+/* Pequeno detalhe vermelho */
+
+.hero h1 span::after {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 13px;
+
+    height: 13px;
+
+    margin-left: 13px;
+
+    background: var(--red);
+
+    transform: rotate(45deg);
+
+    vertical-align: middle;
+
+}
+
+
+.hero-description {
+
+    max-width: 450px;
+
+    color: #aaa;
+
+    line-height: 1.8;
+
+    font-size: 13px;
+
+    margin: 40px 0;
+
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
+
+.primary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+    background: var(--green);
+
+    color: black;
+
+    padding: 20px 25px;
+
+    min-width: 205px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+
+.primary-button:hover {
+
+    background: white;
+
+    transform: translateY(-3px);
+
+}
+
+
+.primary-button span {
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   DETALHES HERO
+   ========================================================= */
+
+.hero-side {
+
+    position: absolute;
+
+    right: 5%;
+
+    top: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    line-height: 2;
+
+}
+
+
+.hero-side::before {
+
+    content: "";
+
+    width: 2px;
+
+    height: 45px;
+
+    background: var(--red);
+
+    position: absolute;
+
+    left: -18px;
+
+    top: 3px;
+
+}
+
+
+.hero-detail {
+
+    position: absolute;
+
+}
+
+
+.hero-detail.green {
+
+    width: 100px;
+
+    height: 3px;
+
+    background: var(--green);
+
+    top: 20%;
+
+    right: 20%;
+
+    transform: rotate(-15deg);
+
+}
+
+
+.hero-detail.red {
+
+    width: 190px;
+
+    height: 5px;
+
+    background: var(--red);
+
+    bottom: 12%;
+
+    right: -40px;
+
+    transform: rotate(-45deg);
+
+    opacity: 0.9;
+
+}
+
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+.marquee {
+
+    overflow: hidden;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+
+    padding: 20px;
+
+    white-space: nowrap;
+
+    background: #070707;
+
+}
+
+
+.marquee div {
+
+    text-align: center;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.marquee span {
+
+    color: var(--green);
+
+    margin: 0 35px;
+
+}
+
+
+/*
+   Um dos símbolos fica vermelho.
+*/
+
+.marquee span:nth-of-type(2) {
+
+    color: var(--red);
+
+}
+
+
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
+
+.products-section {
+
+    padding: 120px 5%;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 50px;
+
+}
+
+
+.section-heading h2 {
+
+    font-family: "Archivo Black";
+
+    font-size: clamp(45px, 6vw, 85px);
+
+    letter-spacing: -3px;
+
+}
+
+
+.section-heading > p {
+
+    color: var(--gray-light);
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.filters {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.filter {
+
+    background: transparent;
+
+    color: #888;
+
+    border: 1px solid var(--border);
+
+    padding: 12px 20px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    transition:
+        background 0.25s,
+        color 0.25s,
+        border-color 0.25s;
+
+}
+
+
+.filter:hover {
+
+    border-color: #777;
+
+    color: white;
+
+}
+
+
+.filter.active {
+
+    background: var(--white);
+
+    color: black;
+
+    border-color: var(--white);
+
+}
+
+
+/* =========================================================
+   GRID PRODUTOS
+   ========================================================= */
+
+.products-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.product-card {
+
+    cursor: pointer;
+
+    position: relative;
+
+}
+
+
+/* =========================================================
+   IMAGENS DOS PRODUTOS
+   Preparado para Nike / Adidas / etc.
+   ========================================================= */
+
+.product-image {
+
+    aspect-ratio: 4 / 5;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #181818 0%,
+            #0b0b0b 55%,
+            #070707 100%
+        );
+
+    overflow: hidden;
+
+    position: relative;
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+
+    transition:
+        border-color 0.35s ease,
+        transform 0.35s ease;
+
+}
+
+
+.product-card:hover .product-image {
+
+    border-color: rgba(183, 255, 0, 0.28);
+
+}
+
+
+.product-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition:
+        transform 0.65s ease,
+        filter 0.65s ease;
+
+}
+
+
+.product-card:hover img {
+
+    transform: scale(1.035);
+
+}
+
+
+/* =========================================================
+   TAG PRODUTO
+   ========================================================= */
+
+.product-tag {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    z-index: 2;
+
+    background: var(--green);
+
+    color: black;
+
+    padding: 7px 10px;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+/*
+   Pequeno ponto vermelho ao lado.
+*/
+
+.product-tag::after {
+
+    content: "";
+
+    width: 5px;
+
+    height: 5px;
+
+    position: absolute;
+
+    right: -10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: var(--red);
+
+    border-radius: 50%;
+
+}
+
+
+/* =========================================================
+   INFORMAÇÕES DO PRODUTO
+   ========================================================= */
+
+.product-info {
+
+    padding: 20px 0 35px;
+
+}
+
+
+.product-info h3 {
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    transition: color 0.2s;
+
+}
+
+
+.product-card:hover .product-info h3 {
+
+    color: var(--green);
+
+}
+
+
+.product-info p {
+
+    color: #aaa;
+
+    font-size: 12px;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================================
+   SEM PRODUTOS
+   ========================================================= */
+
+.no-products {
+
+    grid-column: 1 / -1;
+
+    padding: 100px 0;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   MANIFESTO
+   ========================================================= */
+
+.manifesto {
+
+    min-height: 80vh;
+
+    padding: 10%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-top: 1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.manifesto::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 5px;
+
+    background: var(--red);
+
+    right: -30px;
+
+    top: 20%;
+
+    transform: rotate(-35deg);
+
+}
+
+
+.manifesto h2 {
+
+    font-family: "Archivo Black";
+
+    font-size: clamp(50px, 8vw, 120px);
+
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+
+}
+
+
+.manifesto h2 span {
+
+    color: var(--green);
+
+}
+
+
+.manifesto > p:not(.eyebrow) {
+
+    color: #888;
+
+    max-width: 550px;
+
+    margin-top: 40px;
+
+    line-height: 1.8;
+
+    font-size: 13px;
+
+}
+
+
+.manifesto-tags {
+
+    display: flex;
+
+    gap: 50px;
+
+    margin-top: 70px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.manifesto-tags span:nth-child(2) {
+
+    color: var(--red);
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+    padding: 80px 5%;
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+
+    border-top: 1px solid var(--border);
+
+    background: #040404;
+
+}
+
+
+/* Logo no footer */
+
+.footer-brand img {
+
+    width: 125px;
+
+    height: auto;
+
+    margin-bottom: 20px;
+
+}
+
+
+.footer-brand p {
+
+    color: #777;
+
+    margin-top: 15px;
+
+    font-size: 11px;
+
+    max-width: 280px;
+
+    line-height: 1.7;
+
+}
+
+
+.footer h4 {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.footer a {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+
+    margin: 15px 0;
+
+    transition:
+        color 0.2s,
+        transform 0.2s;
+
+}
+
+
+.footer a:hover {
+
+    color: var(--green);
+
+    transform: translateX(3px);
+
+}
+
+
+.copyright {
+
+    padding: 25px 5%;
+
+    border-top: 1px solid var(--border);
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* =========================================================
+   MODAL PRODUTO
+   ========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    backdrop-filter: blur(6px);
+
+    z-index: 300;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+}
+
+
+.modal-overlay.active {
+
+    display: flex;
+
+}
+
+
+.product-modal {
+
+    width: min(1100px, 100%);
+
+    max-height: 90vh;
+
+    background: #080808;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    position: relative;
+
+    overflow-y: auto;
+
+    border: 1px solid var(--border);
+
+}
+
+
+.close-modal {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 20px;
+
+    z-index: 5;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: 1px solid var(--border);
+
+    background: rgba(0, 0, 0, 0.8);
+
+    color: white;
+
+    font-size: 25px;
+
+    transition: 0.2s;
+
+}
+
+
+.close-modal:hover {
+
+    background: var(--red);
+
+    border-color: var(--red);
+
+}
+
+
+.modal-image {
+
+    min-height: 650px;
+
+    background:
+        radial-gradient(
+            circle,
+            #191919,
+            #080808
+        );
+
+}
+
+
+.modal-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.modal-info {
+
+    padding: 70px 50px;
+
+}
+
+
+.modal-info h2 {
+
+    font-family: "Archivo Black";
+
+    font-size: 35px;
+
+    text-transform: uppercase;
+
+    line-height: 1.1;
+
+}
+
+
+.modal-price {
+
+    font-size: 18px;
+
+    margin: 20px 0 30px;
+
+}
+
+
+.modal-description {
+
+    color: #888;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    padding-bottom: 30px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+/* =========================================================
+   TAMANHOS
+   ========================================================= */
+
+.size-area {
+
+    margin: 30px 0;
+
+}
+
+
+.size-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+}
+
+
+.size-title button {
+
+    border: none;
+
+    background: none;
+
+    color: #777;
+
+    font-size: 9px;
+
+}
+
+
+.sizes {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+
+.size {
+
+    width: 50px;
+
+    height: 50px;
+
+    border: 1px solid var(--border);
+
+    background: transparent;
+
+    color: white;
+
+    transition: 0.2s;
+
+}
+
+
+.size:hover {
+
+    border-color: var(--green);
+
+}
+
+
+.size.active {
+
+    background: white;
+
+    color: black;
+
+    border-color: white;
+
+}
+
+
+/* =========================================================
+   ADICIONAR SACOLA
+   ========================================================= */
+
+.add-cart {
+
+    width: 100%;
+
+    padding: 20px;
+
+    background: var(--green);
+
+    color: black;
+
+    border: none;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+
+}
+
+
+.add-cart:hover {
+
+    background: white;
+
+    transform: translateY(-2px);
+
+}
+
+
+.product-benefits {
+
+    margin-top: 30px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    line-height: 2.2;
+
+}
+
+
+/* =========================================================
+   CARRINHO OVERLAY
+   ========================================================= */
+
+.cart-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.70);
+
+    z-index: 400;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.3s;
+
+}
+
+
+.cart-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* =========================================================
+   CARRINHO
+   ========================================================= */
+
+.cart {
+
+    position: fixed;
+
+    top: 0;
+
+    right: -500px;
+
+    z-index: 500;
+
+    width: min(450px, 100%);
+
+    height: 100vh;
+
+    background: #080808;
+
+    padding: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition: right 0.4s ease;
+
+    border-left: 1px solid var(--border);
+
+}
+
+
+.cart.active {
+
+    right: 0;
+
+}
+
+
+.cart-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.cart-header h2 {
+
+    font-family: "Archivo Black";
+
+}
+
+
+.cart-header button {
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 25px;
+
+    transition: color 0.2s;
+
+}
+
+
+.cart-header button:hover {
+
+    color: var(--red);
+
+}
+
+
+.cart-items {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+}
+
+
+.cart-item {
+
+    display: grid;
+
+    grid-template-columns: 80px 1fr auto;
+
+    gap: 15px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.cart-item img {
+
+    width: 80px;
+
+    height: 100px;
+
+    object-fit: cover;
+
+    background: #111;
+
+}
+
+
+.cart-item h4 {
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    line-height: 1.5;
+
+}
+
+
+.cart-item p {
+
+    color: #777;
+
+    font-size: 9px;
+
+    margin-top: 7px;
+
+}
+
+
+.remove-item {
+
+    background: none;
+
+    border: none;
+
+    color: #777;
+
+    align-self: start;
+
+    font-size: 18px;
+
+}
+
+
+.remove-item:hover {
+
+    color: var(--red);
+
+}
+
+
+/* =========================================================
+   QUANTIDADE
+   ========================================================= */
+
+.quantity-control {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 10px 0;
+
+}
+
+
+.quantity-control button {
+
+    width: 25px;
+
+    height: 25px;
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid var(--border);
+
+}
+
+
+.quantity-control button:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+
+}
+
+
+.quantity-control span {
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   CARRINHO VAZIO
+   ========================================================= */
+
+.cart-empty {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.cart-empty p {
+
+    font-size: 13px;
+
+}
+
+
+.cart-empty span {
+
+    color: #666;
+
+    font-size: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.cart-footer {
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 25px;
+
+}
+
+
+.cart-total {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+}
+
+
+.cart-total strong {
+
+    color: var(--white);
+
+}
+
+
+.cart-footer > button {
+
+    width: 100%;
+
+    background: var(--green);
+
+    color: black;
+
+    border: none;
+
+    padding: 18px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    transition: 0.2s;
+
+}
+
+
+.cart-footer > button:hover {
+
+    background: white;
+
+}
+
+
+.cart-footer small {
+
+    color: #555;
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================================
+   BUSCA
+   ========================================================= */
+
+.search-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 600;
+
+    background: rgba(5, 5, 5, 0.98);
+
+    display: none;
+
+}
+
+
+.search-overlay.active {
+
+    display: block;
+
+}
+
+
+#closeSearch {
+
+    position: absolute;
+
+    top: 40px;
+
+    right: 5%;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 35px;
+
+    transition: color 0.2s;
+
+}
+
+
+#closeSearch:hover {
+
+    color: var(--red);
+
+}
+
+
+.search-container {
+
+    width: min(800px, 90%);
+
+    margin: 15vh auto;
+
+}
+
+
+.search-container > p {
+
+    color: #777;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.search-container input {
+
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid #444;
+
+    color: white;
+
+    font-size: clamp(30px, 5vw, 60px);
+
+    padding: 25px 0;
+
+    outline: none;
+
+    transition: border-color 0.2s;
+
+}
+
+
+.search-container input:focus {
+
+    border-color: var(--green);
+
+}
+
+
+.search-result {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid var(--border);
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+}
+
+
+.search-result span {
+
+    color: #777;
+
+}
+
+
+.search-result:hover {
+
+    color: var(--green);
+
+}
+
+
+/* =========================================================
+   RESPONSIVO TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .header {
+
+        height: 70px;
+
+        padding: 0 5%;
+
+    }
+
+
+    .brand img {
+
+        width: 95px;
+
+    }
+
+
+    .nav {
+
+        position: absolute;
+
+        top: 70px;
+
+        left: 0;
+
+        width: 100%;
+
+        background: #050505;
+
+        padding: 30px;
+
+        flex-direction: column;
+
+        display: none;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+    .nav.active {
+
+        display: flex;
+
+    }
+
+
+    .menu-button {
+
+        display: block;
+
+    }
+
+
+    .icon-btn {
+
+        display: none;
+
+    }
+
+
+    .hero {
+
+        min-height: 80vh;
+
+        padding: 70px 6%;
+
+    }
+
+
+    .hero h1 {
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .hero h1 span::after {
+
+        width: 8px;
+
+        height: 8px;
+
+    }
+
+
+    .hero-side {
+
+        display: none;
+
+    }
+
+
+    .section-heading {
+
+        display: block;
+
+    }
+
+
+    .section-heading > p {
+
+        margin-top: 20px;
+
+    }
+
+
+    .products-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    .product-modal {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .modal-image {
+
+        min-height: 450px;
+
+    }
+
+
+    .modal-info {
+
+        padding: 40px 25px;
+
+    }
+
+
+    .manifesto-tags {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+    }
+
+
+    .footer {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVO CELULAR
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .brand img {
+
+        width: 85px;
+
+    }
+
+
+    .header-actions {
+
+        gap: 12px;
+
+    }
+
+
+    .hero {
+
+        padding:
+            70px 5%
+            50px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 50px;
+
+        line-height: 0.9;
+
+    }
+
+
+    .hero-description {
+
+        font-size: 12px;
+
+    }
+
+
+    .products-section {
+
+        padding:
+            80px 4%;
+
+    }
+
+
+    .products-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    .product-image {
+
+        aspect-ratio:
+            4 / 5;
+
+    }
+
+
+    .product-info {
+
+        padding:
+            13px 2px
+            25px;
+
+    }
+
+
+    .product-info h3 {
+
+        font-size: 9px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .product-info p {
+
+        font-size: 10px;
+
+    }
+
+
+    .product-tag {
+
+        top: 8px;
+
+        left: 8px;
+
+        padding: 5px 7px;
+
+        font-size: 6px;
+
+    }
+
+
+    .manifesto {
+
+        padding:
+            100px 6%;
+
+    }
+
+
+    .manifesto h2 {
+
+        letter-spacing: -2px;
+
+    }
+
+
+    .footer {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .cart {
+
+        padding: 25px;
+
+    }
+
+
+    .modal-overlay {
+
+        padding: 0;
+
+    }
+
+
+    .product-modal {
+
+        max-height: 100vh;
+
+        height: 100vh;
+
+    }
+
+
+    .modal-image {
+
+        min-height: 45vh;
+
+    }
+
+}
