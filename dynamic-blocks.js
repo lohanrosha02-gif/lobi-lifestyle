@@ -76,5 +76,12 @@
     const b=e.target.closest(".lobi-extra-block");if(!b)return;e.preventDefault();e.stopPropagation();parent.postMessage({type:"lobi-editor-select",section:"blocks"},"*");
   },true);
 
+  document.addEventListener("contextmenu",e=>{
+    if(!new URLSearchParams(location.search).has("editorPreview"))return;
+    const b=e.target.closest(".lobi-extra-block");if(!b)return;
+    e.preventDefault();e.stopPropagation();
+    parent.postMessage({type:"lobi-editor-context-delete-block",id:b.dataset.blockId},"*");
+  },true);
+
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(load,250));else setTimeout(load,250);
 })();
