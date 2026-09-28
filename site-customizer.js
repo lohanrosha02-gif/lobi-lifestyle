@@ -133,7 +133,7 @@
     }
 
     ensureStyle().textContent=`
-      body{background:${c.theme.background};color:${c.theme.text}}
+      [data-editor-section][hidden]{display:none!important}\n      body{background:${c.theme.background};color:${c.theme.text}}
       .hero h1{font-size:clamp(48px,8vw,${c.hero.titleMax}px)!important}
       .products-section{padding-top:${c.products.sectionPadding}px!important;padding-bottom:${c.products.sectionPadding}px!important}
       .products-grid{grid-template-columns:repeat(${Math.max(1,Math.min(6,c.products.columnsDesktop))},minmax(0,1fr))!important}
