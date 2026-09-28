@@ -6,7 +6,7 @@
 
   const defaults={
     theme:{background:"#050505",text:"#f4f4f1",primary:"#b7ff00",secondary:"#ef2b20",panel:"#0d0d0d",muted:"#9a9a9a"},
-    header:{height:85,logoWidth:115},
+    header:{visible:true,height:85,logoWidth:115},
     hero:{visible:true,eyebrow:"LOBI LIFESTYLE · DROP 01",title:"NÃO É SÓ\nROUPA.",accent:"É PRESENÇA.",description:"Streetwear masculino selecionado para quem carrega identidade no jeito de vestir.",buttonText:"VER O DROP",buttonLink:"#produtos",titleMax:125,minHeight:760,imageUrl:"",imageX:50,imageY:50,overlay:45},
     marquee:{visible:true,text:"LOBI LIFESTYLE ✦ STREETWEAR MASCULINO ✦ DROP 01 ✦ PRESENÇA"},
     products:{visible:true,eyebrow:"PRIMEIRO DROP",title:"DROP 01",description:"Peças selecionadas pela LOBI.\nQuantidades limitadas.",columnsDesktop:3,columnsMobile:2,imageRatio:"4/5",sectionPadding:120},
@@ -54,7 +54,7 @@
     root.setProperty("--gray-light",c.theme.muted);
 
     const header=document.querySelector(".header");
-    if(header)header.style.height=c.header.height+"px";
+    if(header){header.dataset.editorSection="header";header.hidden=!c.header.visible;header.style.height=c.header.height+"px";}
     const logo=document.querySelector(".brand img");
     if(logo)logo.style.width=c.header.logoWidth+"px";
 
@@ -123,7 +123,8 @@
       if(insta&&c.footer.instagram)insta.href=c.footer.instagram;
       if(whats&&c.footer.whatsapp)whats.href=c.footer.whatsapp;
     }
-    setText(document.querySelector(".copyright"),c.footer.copyright);
+    const copyright=document.querySelector(".copyright");
+    if(copyright){copyright.dataset.editorSection="footer";copyright.hidden=!c.footer.visible;setText(copyright,c.footer.copyright);}
 
     const main=document.querySelector("main");
     if(main){
@@ -166,9 +167,17 @@
     const s=document.createElement("style");s.textContent='html.lobi-editor-preview [data-editor-section]{outline:1px dashed transparent;cursor:pointer}html.lobi-editor-preview [data-editor-section]:hover{outline:2px solid #b7ff00;outline-offset:-2px}';document.head.appendChild(s);
     document.addEventListener("click",e=>{
       const section=e.target.closest("[data-editor-section]");
-      if(!section)return;
+      if(!section||section.classList.contains("lobi-extra-block"))return;
       e.preventDefault();e.stopPropagation();
       parent.postMessage({type:"lobi-editor-select",section:section.dataset.editorSection},"*");
+    },true);
+    document.addEventListener("contextmenu",e=>{
+      const section=e.target.closest("[data-editor-section]");
+      if(!section||section.classList.contains("lobi-extra-block"))return;
+      const key=section.dataset.editorSection;
+      if(!["header","hero","promo","marquee","products","manifesto","footer"].includes(key))return;
+      e.preventDefault();e.stopPropagation();
+      parent.postMessage({type:"lobi-editor-context-delete-fixed",section:key},"*");
     },true);
     parent.postMessage({type:"lobi-preview-ready"},"*");
   }
