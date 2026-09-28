@@ -85,7 +85,7 @@ async function loadProducts() {
     return;
   }
 
-  products = (data || []).map((product) => ({
+  products = (data || []).filter((product) => product.category !== "__site_config__").map((product) => ({
     ...product,
     image: product.image_url || "",
     sizes: Array.isArray(product.sizes) ? product.sizes : []
