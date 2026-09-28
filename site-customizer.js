@@ -137,6 +137,8 @@
       [hero,promo,marquee,products,manifesto].forEach(el=>{if(el){el.draggable=true;el.dataset.editorDraggable="true";}});
     }
 
+    window.dispatchEvent(new CustomEvent("lobi:layout-applied"));
+
     ensureStyle().textContent=`
       [data-editor-section][hidden]{display:none!important}\n      body{background:${c.theme.background};color:${c.theme.text}}
       .hero h1{font-size:clamp(48px,8vw,${c.hero.titleMax}px)!important}
