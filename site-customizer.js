@@ -45,6 +45,7 @@
 
   function apply(config){
     const c=deepMerge(JSON.parse(JSON.stringify(defaults)),config||{});
+    window.__lobiEditorConfig=c;
     const root=document.documentElement.style;
     root.setProperty("--black",c.theme.background);
     root.setProperty("--white",c.theme.text);
@@ -168,26 +169,96 @@
 
   window.addEventListener("message",e=>{if(e.data?.type==="lobi-preview-config")apply(e.data.config);});
 
+  function editorFieldValue(field){
+    const c=window.__lobiEditorConfig||{};
+    const map={
+      heroEyebrow:c.hero?.eyebrow,heroTitle:c.hero?.title,heroAccent:c.hero?.accent,heroDescription:c.hero?.description,heroButtonText:c.hero?.buttonText,
+      marqueeText:c.marquee?.text,
+      productsEyebrow:c.products?.eyebrow,productsTitle:c.products?.title,productsDescription:c.products?.description,
+      promoTitle:c.promo?.title,promoSubtitle:c.promo?.subtitle,promoButtonText:c.promo?.buttonText,
+      manifestoEyebrow:c.manifesto?.eyebrow,manifestoTitle:c.manifesto?.title,manifestoAccent:c.manifesto?.accent,manifestoBody:c.manifesto?.body,manifestoTags:c.manifesto?.tags,
+      footerTagline:c.footer?.tagline,footerInstagram:c.footer?.instagram,footerWhatsapp:c.footer?.whatsapp,footerCopyright:c.footer?.copyright
+    };
+    return map[field]??"";
+  }
+
+  function closeDirectTools(){
+    document.querySelectorAll(".lobi-direct-editor,.lobi-direct-toolbar").forEach(x=>x.remove());
+  }
+
+  function openInlineEditor(target,section,field){
+    closeDirectTools();
+    const value=editorFieldValue(field);
+    const multiline=["heroTitle","heroDescription","marqueeText","productsDescription","manifestoBody"].includes(field);
+    const box=document.createElement("div");
+    box.className="lobi-direct-editor";
+    box.innerHTML='<div class="lobi-direct-label">EDITAR DIRETO</div>'+(multiline?'<textarea class="lobi-direct-input"></textarea>':'<input class="lobi-direct-input" type="text">')+'<div class="lobi-direct-actions"><button type="button" class="lobi-direct-cancel">CANCELAR</button><button type="button" class="lobi-direct-save">APLICAR</button></div>';
+    const input=box.querySelector(".lobi-direct-input");
+    input.value=value;
+    document.body.appendChild(box);
+    const r=target.getBoundingClientRect();
+    const w=Math.min(380,window.innerWidth-20);
+    box.style.width=w+"px";
+    box.style.left=Math.max(10,Math.min(window.innerWidth-w-10,r.left))+"px";
+    box.style.top=Math.max(10,Math.min(window.innerHeight-box.offsetHeight-10,r.bottom+8))+"px";
+    const apply=()=>{
+      parent.postMessage({type:"lobi-editor-inline-change",section,field,value:input.value},"*");
+      box.remove();
+    };
+    box.querySelector(".lobi-direct-save").onclick=apply;
+    box.querySelector(".lobi-direct-cancel").onclick=()=>box.remove();
+    input.addEventListener("keydown",e=>{
+      if(!multiline&&e.key==="Enter"){e.preventDefault();apply();}
+      if(multiline&&e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();apply();}
+      if(e.key==="Escape"){e.preventDefault();box.remove();}
+    });
+    setTimeout(()=>{input.focus();if(typeof input.select==="function")input.select();},0);
+  }
+
+  function openSectionToolbar(target,section){
+    closeDirectTools();
+    const box=document.createElement("div");
+    box.className="lobi-direct-toolbar";
+    const movable=["hero","promo","marquee","products","manifesto"].includes(section);
+    box.innerHTML=(movable?'<button type="button" data-act="up">↑</button><button type="button" data-act="down">↓</button>':'')+
+      (["hero","promo"].includes(section)?'<button type="button" data-act="image">IMAGEM</button>':'')+
+      '<button type="button" data-act="advanced">AJUSTES</button><button type="button" class="danger" data-act="delete">EXCLUIR</button>';
+    document.body.appendChild(box);
+    const r=target.getBoundingClientRect();
+    const w=box.offsetWidth;
+    box.style.left=Math.max(8,Math.min(window.innerWidth-w-8,r.left+8))+"px";
+    box.style.top=Math.max(8,r.top+8)+"px";
+    box.querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+      const act=btn.dataset.act;
+      if(act==="up"||act==="down")parent.postMessage({type:"lobi-editor-move-fixed",section,dir:act==="up"?-1:1},"*");
+      if(act==="image")parent.postMessage({type:"lobi-editor-quick-image",section},"*");
+      if(act==="advanced")parent.postMessage({type:"lobi-editor-open-advanced",section},"*");
+      if(act==="delete")parent.postMessage({type:"lobi-editor-context-delete-fixed",section},"*");
+      box.remove();
+    });
+  }
+
   function setupEditorPreview(){
     if(!new URLSearchParams(location.search).has("editorPreview"))return;
     document.documentElement.classList.add("lobi-editor-preview");
     const s=document.createElement("style");
-    s.textContent='html.lobi-editor-preview [data-editor-section]{outline:1px dashed transparent;cursor:pointer;transition:outline-color .15s ease,opacity .15s ease}html.lobi-editor-preview [data-editor-section]:hover{outline:2px solid #b7ff00;outline-offset:-2px}html.lobi-editor-preview [data-editor-field]:hover{outline:2px solid #fff;outline-offset:2px}html.lobi-editor-preview [data-editor-draggable="true"]{cursor:grab}html.lobi-editor-preview .lobi-editor-dragging{opacity:.45;outline:2px solid #b7ff00!important}html.lobi-editor-preview .lobi-editor-drop-target{outline:3px solid #b7ff00!important;outline-offset:-3px}html.lobi-editor-preview a,html.lobi-editor-preview button{pointer-events:auto}';
+    s.textContent='html.lobi-editor-preview [data-editor-section]{outline:1px dashed transparent;cursor:pointer;transition:outline-color .15s ease,opacity .15s ease}html.lobi-editor-preview [data-editor-section]:hover{outline:2px solid #b7ff00;outline-offset:-2px}html.lobi-editor-preview [data-editor-field]:hover{outline:2px solid #fff;outline-offset:2px}html.lobi-editor-preview [data-editor-draggable="true"]{cursor:grab}html.lobi-editor-preview .lobi-editor-dragging{opacity:.45;outline:2px solid #b7ff00!important}html.lobi-editor-preview .lobi-editor-drop-target{outline:3px solid #b7ff00!important;outline-offset:-3px}.lobi-direct-editor{position:fixed;z-index:999999;padding:12px;border:1px solid rgba(183,255,0,.35);border-radius:12px;background:#0b0b0d;box-shadow:0 18px 60px rgba(0,0,0,.55);font-family:Inter,sans-serif}.lobi-direct-label{margin-bottom:8px;color:#b7ff00;font-size:9px;font-weight:800;letter-spacing:.14em}.lobi-direct-input{width:100%;min-height:44px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:#050505;color:#fff;padding:10px 11px;font:500 14px Inter,sans-serif;outline:none}.lobi-direct-editor textarea{min-height:110px;resize:vertical}.lobi-direct-input:focus{border-color:#b7ff00}.lobi-direct-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:9px}.lobi-direct-actions button,.lobi-direct-toolbar button{border:1px solid rgba(255,255,255,.12);border-radius:7px;background:#111;color:#ddd;padding:8px 10px;font:800 8px Inter,sans-serif;letter-spacing:.08em}.lobi-direct-actions .lobi-direct-save{background:#b7ff00;color:#050505;border-color:#b7ff00}.lobi-direct-toolbar{position:fixed;z-index:999998;display:flex;gap:5px;padding:6px;border:1px solid rgba(183,255,0,.28);border-radius:10px;background:rgba(8,8,9,.95);box-shadow:0 12px 40px rgba(0,0,0,.4);backdrop-filter:blur(10px)}.lobi-direct-toolbar .danger{color:#ff6b63;border-color:rgba(239,43,32,.35)}html.lobi-editor-preview a,html.lobi-editor-preview button{pointer-events:auto}';
     document.head.appendChild(s);
 
     const clearSelected=()=>document.querySelectorAll(".lobi-editor-selected").forEach(x=>x.classList.remove("lobi-editor-selected"));
     const clearDrop=()=>document.querySelectorAll(".lobi-editor-drop-target").forEach(x=>x.classList.remove("lobi-editor-drop-target"));
 
     document.addEventListener("click",e=>{
+      if(e.target.closest(".lobi-direct-editor,.lobi-direct-toolbar"))return;
       const field=e.target.closest("[data-editor-field]");
       const section=e.target.closest("[data-editor-section]");
       if(!section||section.classList.contains("lobi-extra-block"))return;
       e.preventDefault();e.stopPropagation();
       clearSelected();section.classList.add("lobi-editor-selected");
       if(field){
-        parent.postMessage({type:"lobi-editor-focus-field",section:field.dataset.editorSection||section.dataset.editorSection,field:field.dataset.editorField},"*");
+        openInlineEditor(field,field.dataset.editorSection||section.dataset.editorSection,field.dataset.editorField);
       }else{
-        parent.postMessage({type:"lobi-editor-select",section:section.dataset.editorSection},"*");
+        openSectionToolbar(section,section.dataset.editorSection);
       }
     },true);
 
