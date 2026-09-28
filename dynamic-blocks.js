@@ -9,7 +9,7 @@
     if(document.getElementById("lobiBlocksStyle"))return;
     const s=document.createElement("style");s.id="lobiBlocksStyle";
     s.textContent=
-      ".lobi-dynamic-zone{width:100%}.lobi-extra-block[hidden]{display:none!important}.lobi-extra-block{width:100%;display:flex;align-items:center;justify-content:center;padding-left:6%;padding-right:6%;overflow:hidden}.lobi-extra-inner{width:100%;max-width:1200px;margin:0 auto}.lobi-extra-block h2{font-family:'Archivo Black',sans-serif;font-size:clamp(34px,5vw,72px);line-height:.95;letter-spacing:-3px}.lobi-extra-eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-light);margin-bottom:14px}.lobi-extra-body{margin:18px auto 0;max-width:760px;color:var(--gray-light);line-height:1.8;white-space:pre-line}.lobi-extra-button{display:inline-flex;margin-top:25px;background:var(--green);color:#050505;padding:16px 22px;font-size:10px;font-weight:800;letter-spacing:.14em}.lobi-extra-image{width:100%;height:auto;display:block}.lobi-extra-caption{margin-top:10px;color:var(--gray-light);font-size:11px}.lobi-extra-divider{margin:0 auto}.lobi-extra-banner{background-size:cover;background-position:center}.lobi-editor-preview .lobi-extra-block{cursor:pointer;outline:1px dashed transparent}.lobi-editor-preview .lobi-extra-block:hover{outline:2px solid var(--green);outline-offset:-2px}@media(max-width:600px){.lobi-extra-block{padding-left:5%;padding-right:5%}.lobi-extra-block h2{letter-spacing:-2px}}";
+      ".lobi-dynamic-zone{width:100%}.lobi-extra-block[hidden]{display:none!important}.lobi-editor-preview .lobi-extra-block{cursor:grab}.lobi-editor-preview .lobi-extra-block.lobi-block-dragging{opacity:.45;outline:2px solid var(--green)!important}.lobi-editor-preview .lobi-extra-block.lobi-block-drop{outline:3px solid var(--green)!important;outline-offset:-3px}.lobi-extra-block{width:100%;display:flex;align-items:center;justify-content:center;padding-left:6%;padding-right:6%;overflow:hidden}.lobi-extra-inner{width:100%;max-width:1200px;margin:0 auto}.lobi-extra-block h2{font-family:'Archivo Black',sans-serif;font-size:clamp(34px,5vw,72px);line-height:.95;letter-spacing:-3px}.lobi-extra-eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-light);margin-bottom:14px}.lobi-extra-body{margin:18px auto 0;max-width:760px;color:var(--gray-light);line-height:1.8;white-space:pre-line}.lobi-extra-button{display:inline-flex;margin-top:25px;background:var(--green);color:#050505;padding:16px 22px;font-size:10px;font-weight:800;letter-spacing:.14em}.lobi-extra-image{width:100%;height:auto;display:block}.lobi-extra-caption{margin-top:10px;color:var(--gray-light);font-size:11px}.lobi-extra-divider{margin:0 auto}.lobi-extra-banner{background-size:cover;background-position:center}.lobi-editor-preview .lobi-extra-block{cursor:pointer;outline:1px dashed transparent}.lobi-editor-preview .lobi-extra-block:hover{outline:2px solid var(--green);outline-offset:-2px}@media(max-width:600px){.lobi-extra-block{padding-left:5%;padding-right:5%}.lobi-extra-block h2{letter-spacing:-2px}}";
     document.head.appendChild(s);
   }
 
@@ -30,7 +30,7 @@
   }
 
   function block(b){
-    const s=document.createElement("section");s.className="lobi-extra-block lobi-extra-"+b.type;s.dataset.blockId=b.id;s.dataset.editorSection="blocks";
+    const s=document.createElement("section");s.className="lobi-extra-block lobi-extra-"+b.type;s.dataset.blockId=b.id;s.dataset.editorSection="blocks";if(new URLSearchParams(location.search).has("editorPreview"))s.draggable=true;
     if(b.visible===false)s.hidden=true;
     if(b.background)s.style.background=b.background;
     s.style.paddingTop=(b.paddingTop||0)+"px";s.style.paddingBottom=(b.paddingBottom||0)+"px";s.style.textAlign=b.align||"center";
@@ -73,7 +73,42 @@
   window.addEventListener("message",e=>{if(e.data&&e.data.type==="lobi-preview-blocks")render(e.data.blocks);});
   document.addEventListener("click",e=>{
     if(!new URLSearchParams(location.search).has("editorPreview"))return;
-    const b=e.target.closest(".lobi-extra-block");if(!b)return;e.preventDefault();e.stopPropagation();parent.postMessage({type:"lobi-editor-select",section:"blocks"},"*");
+    const b=e.target.closest(".lobi-extra-block");if(!b)return;
+    e.preventDefault();e.stopPropagation();
+    parent.postMessage({type:"lobi-editor-select-block",id:b.dataset.blockId},"*");
+  },true);
+
+  document.addEventListener("dragstart",e=>{
+    if(!new URLSearchParams(location.search).has("editorPreview"))return;
+    const b=e.target.closest(".lobi-extra-block");if(!b)return;
+    e.dataTransfer.effectAllowed="move";
+    e.dataTransfer.setData("text/plain","block:"+b.dataset.blockId);
+    b.classList.add("lobi-block-dragging");
+  },true);
+
+  document.addEventListener("dragover",e=>{
+    if(!new URLSearchParams(location.search).has("editorPreview"))return;
+    const b=e.target.closest(".lobi-extra-block");if(!b)return;
+    e.preventDefault();
+    document.querySelectorAll(".lobi-block-drop").forEach(x=>x.classList.remove("lobi-block-drop"));
+    b.classList.add("lobi-block-drop");
+    e.dataTransfer.dropEffect="move";
+  },true);
+
+  document.addEventListener("drop",e=>{
+    if(!new URLSearchParams(location.search).has("editorPreview"))return;
+    const target=e.target.closest(".lobi-extra-block");if(!target)return;
+    const payload=e.dataTransfer.getData("text/plain")||"";
+    if(!payload.startsWith("block:"))return;
+    e.preventDefault();e.stopPropagation();
+    const rect=target.getBoundingClientRect();
+    const after=e.clientY>rect.top+rect.height/2;
+    document.querySelectorAll(".lobi-block-drop").forEach(x=>x.classList.remove("lobi-block-drop"));
+    parent.postMessage({type:"lobi-editor-reorder-block",fromId:payload.slice(6),toId:target.dataset.blockId,after:after},"*");
+  },true);
+
+  document.addEventListener("dragend",()=>{
+    document.querySelectorAll(".lobi-block-dragging,.lobi-block-drop").forEach(x=>x.classList.remove("lobi-block-dragging","lobi-block-drop"));
   },true);
 
   document.addEventListener("contextmenu",e=>{
