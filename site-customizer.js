@@ -12,7 +12,7 @@
     products:{visible:true,eyebrow:"PRIMEIRO DROP",title:"DROP 01",description:"Peças selecionadas pela LOBI.\nQuantidades limitadas.",columnsDesktop:3,columnsMobile:2,imageRatio:"4/5",sectionPadding:120},
     promo:{visible:false,title:"DROP 01",subtitle:"PEÇAS SELECIONADAS. QUANTIDADES LIMITADAS.",buttonText:"VER PRODUTOS",buttonLink:"#produtos",imageUrl:"",height:420,imageX:50,imageY:50,overlay:48},
     manifesto:{visible:true,eyebrow:"LOBI LIFESTYLE",title:"VISTA O QUE",accent:"TE REPRESENTA.",body:"A LOBI não nasceu para ser só mais uma loja de roupas. Nossa seleção é feita para quem vê o estilo como parte da própria identidade.",tags:"ESTILO, ATITUDE, IDENTIDADE"},
-    footer:{visible:true,tagline:"Streetwear masculino para quem tem presença.",instagram:"",whatsapp:"",copyright:"© 2026 LOBI LIFESTYLE"},
+    footer:{visible:true,tagline:"Streetwear masculino para quem tem presença.",instagram:"",whatsapp:"https://wa.me/5583993149486",copyright:"© 2026 LOBI LIFESTYLE"},
     order:["hero","promo","marquee","products","manifesto"]
   };
 
@@ -123,7 +123,7 @@
       const insta=links.find(a=>a.textContent.trim().toLowerCase()==="instagram");
       const whats=links.find(a=>a.textContent.trim().toLowerCase()==="whatsapp");
       if(insta){if(c.footer.instagram)insta.href=c.footer.instagram;markEditorField(insta,"footer","footerInstagram");}
-      if(whats){if(c.footer.whatsapp)whats.href=c.footer.whatsapp;markEditorField(whats,"footer","footerWhatsapp");}
+      if(whats){whats.href=c.footer.whatsapp||"https://wa.me/5583993149486";whats.target="_blank";whats.rel="noopener";markEditorField(whats,"footer","footerWhatsapp");}
     }
     const copyright=document.querySelector(".copyright");
     if(copyright){copyright.dataset.editorSection="footer";copyright.hidden=!c.footer.visible;setText(copyright,c.footer.copyright);markEditorField(copyright,"footer","footerCopyright");}
