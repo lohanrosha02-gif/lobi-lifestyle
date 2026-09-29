@@ -68,17 +68,131 @@
     return icons[name]||icons.spark;
   }
 
+  function motifMarkup(name){
+    const special={
+      pumpkin:'<path d="M50 22c-5-9-2-15 6-18"/><path d="M50 23c-22-12-38 7-35 31 3 25 21 34 35 29 14 5 32-4 35-29 3-24-13-43-35-31Z"/><path d="m31 48 10-7 5 11M69 48l-10-7-5 11M38 67c8 7 16 7 24 0"/>',
+      bat:'<path d="M50 49c-8-12-19-17-32-14 4 4 5 9 3 14-4-2-9-2-14 1 9 5 13 13 14 24 10-9 19-10 29-3 10-7 19-6 29 3 1-11 5-19 14-24-5-3-10-3-14-1-2-5-1-10 3-14-13-3-24 2-32 14Z"/><path d="M43 39 50 29l7 10"/>',
+      star:'<path d="m50 9 10 27 29 1-23 18 8 28-24-16-24 16 8-28-23-18 29-1Z"/>',
+      gift:'<rect x="16" y="38" width="68" height="48" rx="2"/><path d="M50 38v48M12 28h76v14H12Z"/><path d="M50 28c-17-1-25-8-22-16 3-8 15-4 22 16ZM50 28c17-1 25-8 22-16-3-8-15-4-22 16Z"/>',
+      flame:'<path d="M53 8c5 21-12 25-5 40 4-8 12-12 17-22 14 13 23 31 13 49-8 14-23 19-36 14-18-7-26-28-15-44 6-9 15-15 26-37Z"/><path d="M50 56c8 8 9 17 4 25"/>',
+      ribbon:'<path d="M8 30c19-13 35-13 48 0s28 13 36 0M8 58c19-13 35-13 48 0s28 13 36 0"/><circle cx="27" cy="25" r="4"/><circle cx="69" cy="67" r="4"/>',
+      sparkle:'<path d="M50 6 58 39 91 47 58 55 50 88 42 55 9 47 42 39Z"/>',
+      leaf:'<path d="M15 76c44 0 69-24 70-61C48 16 22 40 15 76Z"/><path d="M22 69 75 25"/>',
+      lightning:'<path d="m57 5-31 49h22l-8 41 34-54H51Z"/>',
+      stripes:'<path d="M12 18h12v64H12zM32 18h12v64H32zM52 18h12v64H52zM72 18h12v64H72z"/>',
+      heart:'<path d="M50 82 18 50C2 33 14 14 31 18c8 2 14 8 19 15 5-7 11-13 19-15 17-4 29 15 13 32Z"/>',
+      snowflake:iconMarkup("snowflake"),
+      tree:iconMarkup("tree"),
+      pennant:iconMarkup("pennant"),
+      confetti:iconMarkup("confetti"),
+      flower:iconMarkup("flower"),
+      egg:iconMarkup("egg"),
+      truck:iconMarkup("truck"),
+      tag:iconMarkup("tag"),
+      chip:iconMarkup("chip"),
+      cake:iconMarkup("cake"),
+      box:iconMarkup("box"),
+      notebook:iconMarkup("notebook"),
+      sun:iconMarkup("sun"),
+      crescent:iconMarkup("crescent"),
+      tie:iconMarkup("tie"),
+      book:iconMarkup("book"),
+      kite:iconMarkup("kite"),
+      bag:iconMarkup("bag"),
+      calendar:iconMarkup("calendar"),
+      ticket:iconMarkup("ticket"),
+      badge:iconMarkup("badge"),
+      percent:iconMarkup("percent"),
+      link:iconMarkup("link"),
+      diamond:iconMarkup("diamond"),
+      hardhat:iconMarkup("hardhat"),
+      spark:iconMarkup("spark")
+    };
+    return special[name]||iconMarkup(name||"spark");
+  }
+
+  function campaignMotifs(campaign){
+    const key=campaign?.key||"original";
+    const map={
+      anoNovo:["sparkle","star","ribbon"],
+      carnaval:["confetti","ribbon","sparkle"],
+      diaMulher:["flower","sparkle","heart"],
+      pascoa:["egg","sparkle","leaf"],
+      diaTrabalhador:["hardhat","lightning","sparkle"],
+      diaMaes:["flower","heart","sparkle"],
+      diaNamorados:["heart","sparkle","ribbon"],
+      diaAmigo:["link","sparkle","diamond"],
+      saoJoao:["pennant","flame","star"],
+      diaPais:["tie","diamond","sparkle"],
+      diaAvos:["book","leaf","sparkle"],
+      diaHomem:["diamond","lightning","sparkle"],
+      diaCriancas:["kite","sparkle","confetti"],
+      halloween:["pumpkin","bat","crescent"],
+      natal:["tree","star","snowflake","gift"],
+      diaConsumidor:["bag","tag","sparkle"],
+      mesConsumidor:["calendar","bag","sparkle"],
+      semanaCliente:["ticket","tag","sparkle"],
+      diaCliente:["badge","sparkle","heart"],
+      onzeOnze:["stripes","tag","sparkle"],
+      esquentaBlack:["flame","tag","lightning"],
+      blackFriday:["tag","percent","lightning"],
+      cyberMonday:["chip","lightning","sparkle"],
+      liquidacao:["percent","tag","lightning"],
+      freteGratis:["truck","box","sparkle"],
+      aniversarioLobi:["cake","sparkle","confetti"],
+      dropEspecial:["box","sparkle","lightning"],
+      voltaAulas:["notebook","sparkle","stripes"],
+      verao:["sun","ribbon","sparkle"],
+      inverno:["snowflake","sparkle","stripes"]
+    };
+    return map[key]||[campaign?.icon||"spark","sparkle"];
+  }
+
+  function motifSvg(name){
+    return '<svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">'+motifMarkup(name)+'</svg>';
+  }
+
+  function clearThemeDecor(){
+    document.querySelectorAll(".lobi-theme-decor-layer").forEach(x=>x.remove());
+    document.querySelectorAll(".lobi-theme-decor-host").forEach(x=>x.classList.remove("lobi-theme-decor-host"));
+  }
+
+  function decorateHost(host,campaign,slot){
+    if(!host||!campaign||campaign.key==="original")return;
+    host.classList.add("lobi-theme-decor-host");
+    const motifs=campaignMotifs(campaign);
+    const layer=document.createElement("div");
+    layer.className="lobi-theme-decor-layer lobi-theme-decor-"+slot;
+    layer.setAttribute("aria-hidden","true");
+    const count=campaign.important?5:4;
+    for(let i=0;i<count;i++){
+      const item=document.createElement("span");
+      item.className="lobi-theme-decor-item lobi-theme-decor-item-"+(i+1);
+      item.style.color=i%2?safeColor(campaign.accent2,"#ef2b20"):safeColor(campaign.accent1,"#b7ff00");
+      item.innerHTML=motifSvg(motifs[i%motifs.length]);
+      layer.appendChild(item);
+    }
+    host.appendChild(layer);
+  }
+
+  function applyThemeDecor(campaign,hosts){
+    clearThemeDecor();
+    if(!campaign||campaign.key==="original")return;
+    decorateHost(hosts.hero,campaign,"hero");
+    decorateHost(hosts.products,campaign,"products");
+    decorateHost(hosts.manifesto,campaign,"manifesto");
+    decorateHost(hosts.footer,campaign,"footer");
+  }
+
   function themeArt(campaign,variant="hero"){
     if(!campaign||campaign.key==="original")return "";
     const a1=safeColor(campaign.accent1,"#b7ff00");
     const a2=safeColor(campaign.accent2,"#ef2b20");
     const important=!!campaign.important;
-    const icon=iconMarkup(campaign.icon||"spark");
+    const motifs=campaignMotifs(campaign);
     const w=variant==="hero"?1600:1500;
     const h=variant==="hero"?900:520;
-    const iconScale=variant==="hero"?4.8:3.1;
-    const iconX=variant==="hero"?1040:1040;
-    const iconY=variant==="hero"?165:40;
+    const motifScale=variant==="hero"?3.2:2.25;
     const o1=important?".42":".22";
     const o2=important?".26":".13";
     const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+w+' '+h+'">'+
@@ -88,8 +202,10 @@
       '<circle cx="'+(w*.82)+'" cy="'+(h*.45)+'" r="'+(variant==="hero"?330:210)+'" fill="url(#g)" opacity=".42"/>'+
       '<path d="M0 '+(h*.78)+' L'+w+' '+(h*.25)+'" stroke="'+a1+'" stroke-opacity="'+(important?".16":".08")+'" stroke-width="2"/>'+
       '<path d="M'+(w*.48)+' 0 L'+(w*.92)+' '+h+'" stroke="'+a2+'" stroke-opacity="'+(important?".13":".06")+'" stroke-width="2"/>'+
-      '<g transform="translate('+iconX+' '+iconY+') scale('+iconScale+')" fill="none" stroke="'+a1+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="'+(important?".66":".38")+'">'+icon+'</g>'+
-      '<g opacity=".17" fill="none" stroke="#fff" stroke-width="1"><rect x="'+(w*.69)+'" y="'+(h*.12)+'" width="'+(w*.21)+'" height="'+(h*.68)+'"/><rect x="'+(w*.72)+'" y="'+(h*.16)+'" width="'+(w*.21)+'" height="'+(h*.68)+'"/></g>'+
+      '<g transform="translate('+(w*.69)+' '+(h*.15)+') scale('+motifScale+')" fill="none" stroke="'+a1+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="'+(important?".62":".34")+'">'+motifMarkup(motifs[0])+'</g>'+
+      '<g transform="translate('+(w*.84)+' '+(h*.52)+') scale('+(motifScale*.72)+')" fill="none" stroke="'+a2+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="'+(important?".45":".24")+'">'+motifMarkup(motifs[1%motifs.length])+'</g>'+
+      '<g transform="translate('+(w*.58)+' '+(h*.62)+') scale('+(motifScale*.48)+')" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="'+(important?".22":".12")+'">'+motifMarkup(motifs[2%motifs.length])+'</g>'+
+      '<g opacity=".14" fill="none" stroke="#fff" stroke-width="1"><rect x="'+(w*.67)+'" y="'+(h*.10)+'" width="'+(w*.24)+'" height="'+(h*.72)+'"/><rect x="'+(w*.71)+'" y="'+(h*.15)+'" width="'+(w*.24)+'" height="'+(h*.72)+'"/></g>'+
       '</svg>';
     return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
   }
@@ -226,6 +342,8 @@
     const copyright=document.querySelector(".copyright");
     if(copyright){copyright.dataset.editorSection="footer";copyright.hidden=!c.footer.visible;setText(copyright,c.footer.copyright);markEditorField(copyright,"footer","footerCopyright");}
 
+    applyThemeDecor(c.campaign,{hero,products,manifesto,footer});
+
     const main=document.querySelector("main");
     if(main){
       const map={hero:hero,promo,marquee,products,manifesto};
@@ -254,10 +372,33 @@
       .lobi-theme-mark svg{width:23px;height:23px;display:block}
       .lobi-theme-mark span{color:var(--white);font-size:8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
       .lobi-promo-banner>.lobi-theme-mark{right:3%;bottom:18px;opacity:.68}
+      .lobi-theme-decor-host{position:relative;overflow:hidden}
+      .lobi-theme-decor-layer{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+      .lobi-theme-decor-host>.hero-content,.lobi-theme-decor-host>.section-heading,.lobi-theme-decor-host>.products-grid,.lobi-theme-decor-host>.filters,.lobi-theme-decor-host>.manifesto-tags,.lobi-theme-decor-host>.footer-brand,.lobi-theme-decor-host>div:not(.lobi-theme-decor-layer){position:relative;z-index:3}
+      .lobi-theme-decor-item{position:absolute;display:block;opacity:.075;filter:drop-shadow(0 0 22px currentColor)}
+      .lobi-theme-decor-item svg{width:100%;height:100%;display:block}
+      .lobi-theme-decor-item-1{width:118px;height:118px;left:-28px;top:12%;transform:rotate(-12deg)}
+      .lobi-theme-decor-item-2{width:92px;height:92px;right:4%;top:17%;transform:rotate(14deg)}
+      .lobi-theme-decor-item-3{width:74px;height:74px;left:9%;bottom:8%;transform:rotate(9deg)}
+      .lobi-theme-decor-item-4{width:132px;height:132px;right:-36px;bottom:3%;transform:rotate(-8deg)}
+      .lobi-theme-decor-item-5{width:58px;height:58px;left:48%;top:7%;transform:rotate(20deg)}
+      .lobi-theme-decor-products .lobi-theme-decor-item{opacity:.055}
+      .lobi-theme-decor-manifesto .lobi-theme-decor-item{opacity:.065}
+      .lobi-theme-decor-footer .lobi-theme-decor-item{opacity:.05}
+      .lobi-theme-decor-footer .lobi-theme-decor-item-1{left:3%;top:12%}
+      .lobi-theme-decor-footer .lobi-theme-decor-item-2{right:8%;top:10%}
+      .lobi-theme-decor-footer .lobi-theme-decor-item-3{left:38%;bottom:-18px}
+      .lobi-theme-decor-footer .lobi-theme-decor-item-4{right:32%;bottom:-30px}
       @media(max-width:600px){
         .lobi-theme-mark{right:4%;bottom:4%;padding:6px 7px}
         .lobi-theme-mark svg{width:18px;height:18px}
         .lobi-theme-mark span{display:none}
+        .lobi-theme-decor-item-1{width:72px;height:72px;left:-18px}
+        .lobi-theme-decor-item-2{width:58px;height:58px;right:2%}
+        .lobi-theme-decor-item-3{width:48px;height:48px;left:8%}
+        .lobi-theme-decor-item-4{width:78px;height:78px;right:-24px}
+        .lobi-theme-decor-item-5{display:none}
+        .lobi-theme-decor-products .lobi-theme-decor-item,.lobi-theme-decor-manifesto .lobi-theme-decor-item,.lobi-theme-decor-footer .lobi-theme-decor-item{opacity:.045}
         .products-grid{grid-template-columns:repeat(${Math.max(1,Math.min(2,c.products.columnsMobile))},minmax(0,1fr))!important}
         .hero{min-height:min(${c.hero.minHeight}px,calc(100svh - ${c.header.height}px))!important}
       }
