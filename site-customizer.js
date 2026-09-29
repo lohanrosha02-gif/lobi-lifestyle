@@ -188,7 +188,10 @@
     const available=new Set([
       "anoNovo","carnaval","diaMulher","pascoa","diaTrabalhador",
       "diaMaes","diaNamorados","diaAmigo","saoJoao","diaPais",
-      "diaAvos","diaHomem","diaCriancas","halloween","natal","diaConsumidor"
+      "diaAvos","diaHomem","diaCriancas","halloween","natal",
+      "diaConsumidor","mesConsumidor","semanaCliente","diaCliente","onzeOnze",
+      "esquentaBlack","blackFriday","cyberMonday","liquidacao","freteGratis",
+      "aniversarioLobi","dropEspecial","voltaAulas","verao","inverno"
     ]);
     const key=campaign?.key||"";
     if(!available.has(key))return "";
