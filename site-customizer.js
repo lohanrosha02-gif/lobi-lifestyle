@@ -336,10 +336,20 @@
     promo.style.backgroundPosition=c.promo.imageX+"% "+c.promo.imageY+"%";
     promo.style.backgroundSize="cover";
     promo.style.backgroundRepeat="no-repeat";
+    if(promo.classList.contains("lobi-premium-theme-banner")){
+      promo.style.removeProperty("background-size");
+      promo.style.removeProperty("background-position");
+      promo.style.removeProperty("background-repeat");
+    }
     const premiumBanner=c.campaign?.usePromoArt?campaignBannerImage(c.campaign):"";
     const promoArt=c.campaign?.usePromoArt?(premiumBanner||themeArt(c.campaign,"promo")):(c.promo.imageUrl||"");
     promo.dataset.campaignKey=c.campaign?.key||"original";
     promo.classList.toggle("lobi-premium-theme-banner",!!premiumBanner);
+    if(premiumBanner){
+      promo.style.removeProperty("background-size");
+      promo.style.removeProperty("background-position");
+      promo.style.removeProperty("background-repeat");
+    }
     promo.style.backgroundImage=promoArt
       ? (premiumBanner
           ? 'linear-gradient(90deg,rgba(2,2,2,.92) 0%,rgba(2,2,2,.72) 36%,rgba(2,2,2,.18) 72%,rgba(2,2,2,.10) 100%),url("'+promoArt.replaceAll('"','%22')+'")'
@@ -419,9 +429,55 @@
         .lobi-theme-mark{right:4%;bottom:4%;padding:6px 7px}
         .lobi-theme-mark svg{width:18px;height:18px}
         .lobi-theme-mark span{display:none}
-        .lobi-promo-banner.lobi-premium-theme-banner{min-height:320px!important;padding:34px 7%;background-position:center!important}
-        .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-content{width:88%;max-width:88%;padding:18px;background:linear-gradient(90deg,rgba(5,5,5,.70),rgba(5,5,5,.18));backdrop-filter:blur(2px)}
-        .lobi-promo-banner.lobi-premium-theme-banner h2{font-size:clamp(34px,12vw,58px);letter-spacing:-2px}
+        .lobi-promo-banner.lobi-premium-theme-banner{
+          min-height:440px!important;
+          padding:0 6% 28px!important;
+          align-items:flex-end!important;
+          justify-content:flex-start!important;
+          background-color:#050505!important;
+          background-size:100% 100%,contain!important;
+          background-position:center,center top!important;
+          background-repeat:no-repeat,no-repeat!important;
+        }
+        .lobi-promo-banner.lobi-premium-theme-banner::after{
+          content:"";
+          position:absolute;
+          inset:0;
+          z-index:0;
+          pointer-events:none;
+          background:linear-gradient(180deg,rgba(5,5,5,.04) 0%,rgba(5,5,5,.12) 45%,rgba(5,5,5,.82) 78%,#050505 100%);
+        }
+        .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-content{
+          position:relative;
+          z-index:2;
+          width:100%;
+          max-width:100%;
+          padding:16px 0 0;
+          background:none;
+          backdrop-filter:none;
+        }
+        .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-subtitle{
+          margin-bottom:7px;
+          font-size:8px;
+          line-height:1.35;
+          letter-spacing:.22em;
+          color:rgba(244,244,241,.68);
+        }
+        .lobi-promo-banner.lobi-premium-theme-banner h2{
+          max-width:92%;
+          margin:0 0 12px;
+          font-size:clamp(28px,9vw,42px);
+          line-height:.95;
+          letter-spacing:-1.4px;
+          text-wrap:balance;
+        }
+        .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-button{
+          min-height:38px;
+          padding:10px 14px;
+          border-radius:7px;
+          font-size:8px;
+          letter-spacing:.12em;
+        }
         .lobi-theme-decor-item-1{width:72px;height:72px;left:-18px}
         .lobi-theme-decor-item-2{width:58px;height:58px;right:2%}
         .lobi-theme-decor-item-3{width:48px;height:48px;left:8%}
