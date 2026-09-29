@@ -186,14 +186,14 @@
 
   function campaignBannerImage(campaign){
     const map={
-      halloween:"assets/themes/halloween-lobi.svg",
-      natal:"assets/themes/natal-lobi.svg",
-      saoJoao:"assets/themes/sao-joao-lobi.svg",
-      blackFriday:"assets/themes/black-friday-lobi.svg",
-      diaNamorados:"assets/themes/namorados-lobi.svg",
-      diaMaes:"assets/themes/maes-lobi.svg",
-      verao:"assets/themes/verao-lobi.svg",
-      inverno:"assets/themes/inverno-lobi.svg"
+      halloween:"assets/themes/halloween-lobi.webp",
+      natal:"assets/themes/natal-lobi.webp",
+      saoJoao:"assets/themes/sao-joao-lobi.webp",
+      blackFriday:"assets/themes/black-friday-lobi.webp",
+      diaNamorados:"assets/themes/namorados-lobi.webp",
+      diaMaes:"assets/themes/maes-lobi.webp",
+      verao:"assets/themes/verao-lobi.webp",
+      inverno:"assets/themes/inverno-lobi.webp"
     };
     return map[campaign?.key]||"";
   }
