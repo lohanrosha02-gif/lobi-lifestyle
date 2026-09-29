@@ -266,7 +266,7 @@
     const header=document.querySelector(".header");
     if(header){header.dataset.editorSection="header";header.hidden=!c.header.visible;header.style.height=c.header.height+"px";}
     const logo=document.querySelector(".brand img");
-    if(logo){logo.style.width=c.header.logoWidth+"px";logo.removeAttribute("data-editor-field");}
+    if(logo){logo.style.width=c.header.logoWidth+"px";markEditorField(logo,"header","logoWidth");}
 
     const hero=document.querySelector(".hero");
     if(hero){
