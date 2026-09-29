@@ -187,11 +187,12 @@
   function campaignBannerImage(campaign,mobile=false){
     const available=new Set([
       "anoNovo","carnaval","diaMulher","pascoa","diaTrabalhador",
-      "diaMaes","diaNamorados","diaAmigo","saoJoao","diaPais"
+      "diaMaes","diaNamorados","diaAmigo","saoJoao","diaPais",
+      "diaAvos","diaHomem","diaCriancas","halloween","natal","diaConsumidor"
     ]);
     const key=campaign?.key||"";
     if(!available.has(key))return "";
-    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg";
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=3";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
