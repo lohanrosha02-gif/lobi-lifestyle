@@ -184,6 +184,20 @@
     decorateHost(hosts.footer,campaign,"footer");
   }
 
+  function campaignBannerImage(campaign){
+    const map={
+      halloween:"assets/themes/halloween-lobi.svg",
+      natal:"assets/themes/natal-lobi.svg",
+      saoJoao:"assets/themes/sao-joao-lobi.svg",
+      blackFriday:"assets/themes/black-friday-lobi.svg",
+      diaNamorados:"assets/themes/namorados-lobi.svg",
+      diaMaes:"assets/themes/maes-lobi.svg",
+      verao:"assets/themes/verao-lobi.svg",
+      inverno:"assets/themes/inverno-lobi.svg"
+    };
+    return map[campaign?.key]||"";
+  }
+
   function themeArt(campaign,variant="hero"){
     if(!campaign||campaign.key==="original")return "";
     const a1=safeColor(campaign.accent1,"#b7ff00");
@@ -321,9 +335,15 @@
     promo.style.minHeight=c.promo.height+"px";
     promo.style.backgroundPosition=c.promo.imageX+"% "+c.promo.imageY+"%";
     promo.style.backgroundSize="cover";
-    const promoArt=c.campaign?.usePromoArt?themeArt(c.campaign,"promo"):(c.promo.imageUrl||"");
+    promo.style.backgroundRepeat="no-repeat";
+    const premiumBanner=c.campaign?.usePromoArt?campaignBannerImage(c.campaign):"";
+    const promoArt=c.campaign?.usePromoArt?(premiumBanner||themeArt(c.campaign,"promo")):(c.promo.imageUrl||"");
+    promo.dataset.campaignKey=c.campaign?.key||"original";
+    promo.classList.toggle("lobi-premium-theme-banner",!!premiumBanner);
     promo.style.backgroundImage=promoArt
-      ? 'linear-gradient(rgba(5,5,5,'+(c.promo.overlay/100)+'),rgba(5,5,5,'+(c.promo.overlay/100)+')),url("'+promoArt.replaceAll('"','%22')+'")'
+      ? (premiumBanner
+          ? 'linear-gradient(90deg,rgba(2,2,2,.92) 0%,rgba(2,2,2,.72) 36%,rgba(2,2,2,.18) 72%,rgba(2,2,2,.10) 100%),url("'+promoArt.replaceAll('"','%22')+'")'
+          : 'linear-gradient(rgba(5,5,5,'+(c.promo.overlay/100)+'),rgba(5,5,5,'+(c.promo.overlay/100)+')),url("'+promoArt.replaceAll('"','%22')+'")')
       : `linear-gradient(135deg,${c.theme.primary}24,${c.theme.secondary}18)`;
     setThemeMark(promo,c.campaign,"promo");
     const promoTitle=promo.querySelector("h2");const promoSubtitle=promo.querySelector(".lobi-promo-subtitle");setText(promoTitle,c.promo.title);setText(promoSubtitle,c.promo.subtitle);markEditorField(promoTitle,"promo","promoTitle");markEditorField(promoSubtitle,"promo","promoSubtitle");
@@ -365,6 +385,12 @@
       .product-image img{width:100%!important;height:100%!important;object-fit:cover!important}
       .lobi-promo-banner{width:100%;display:flex;align-items:center;justify-content:center;padding:50px 6%;background:#0b0b0b;color:var(--white);position:relative;overflow:hidden}
       .lobi-promo-content{text-align:center;max-width:900px}
+      .lobi-promo-banner.lobi-premium-theme-banner{justify-content:flex-start;padding-left:6%;padding-right:6%;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+      .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-content{width:min(720px,58%);max-width:720px;text-align:left}
+      .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-subtitle{color:rgba(244,244,241,.72);letter-spacing:.28em}
+      .lobi-promo-banner.lobi-premium-theme-banner h2{font-size:clamp(42px,6.2vw,88px);letter-spacing:-3px;max-width:760px}
+      .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-button{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.38);padding:14px 22px}
+      .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-button:hover{border-color:var(--green);color:var(--green)}
       .lobi-promo-subtitle{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-light);margin-bottom:14px}
       .lobi-promo-banner h2{font-family:"Archivo Black",sans-serif;font-size:clamp(42px,7vw,100px);line-height:.9;letter-spacing:-4px}
       .lobi-promo-button{display:inline-flex;margin-top:25px;background:var(--green);color:#050505;padding:16px 22px;font-size:10px;font-weight:800;letter-spacing:.14em}
@@ -393,6 +419,9 @@
         .lobi-theme-mark{right:4%;bottom:4%;padding:6px 7px}
         .lobi-theme-mark svg{width:18px;height:18px}
         .lobi-theme-mark span{display:none}
+        .lobi-promo-banner.lobi-premium-theme-banner{min-height:320px!important;padding:34px 7%;background-position:center!important}
+        .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-content{width:88%;max-width:88%;padding:18px;background:linear-gradient(90deg,rgba(5,5,5,.70),rgba(5,5,5,.18));backdrop-filter:blur(2px)}
+        .lobi-promo-banner.lobi-premium-theme-banner h2{font-size:clamp(34px,12vw,58px);letter-spacing:-2px}
         .lobi-theme-decor-item-1{width:72px;height:72px;left:-18px}
         .lobi-theme-decor-item-2{width:58px;height:58px;right:2%}
         .lobi-theme-decor-item-3{width:48px;height:48px;left:8%}
