@@ -184,10 +184,14 @@
     decorateHost(hosts.footer,campaign,"footer");
   }
 
-  function campaignBannerImage(){
-    // Os banners de campanha são desenhados pelo próprio tema para garantir
-    // uma composição diferente e correta em desktop e celular.
-    return "";
+  function campaignBannerImage(campaign,mobile=false){
+    const available=new Set([
+      "anoNovo","carnaval","diaMulher","pascoa","diaTrabalhador",
+      "diaMaes","diaNamorados","diaAmigo","saoJoao","diaPais"
+    ]);
+    const key=campaign?.key||"";
+    if(!available.has(key))return "";
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
@@ -352,9 +356,12 @@
     }
     const campaignArt=!!c.campaign?.usePromoArt&&c.campaign?.key!=="original";
     const isMobileBanner=window.matchMedia("(max-width: 700px)").matches;
-    const promoArt=campaignArt?themeArt(c.campaign,"promo",isMobileBanner):(c.promo.imageUrl||"");
+    const campaignFile=campaignArt?campaignBannerImage(c.campaign,isMobileBanner):"";
+    const promoArt=campaignArt?(campaignFile||themeArt(c.campaign,"promo",isMobileBanner)):(c.promo.imageUrl||"");
     promo.dataset.campaignKey=c.campaign?.key||"original";
+    promo.dataset.campaignFile=campaignFile?"1":"0";
     promo.classList.toggle("lobi-premium-theme-banner",campaignArt);
+    promo.classList.toggle("lobi-file-theme-banner",!!campaignFile);
     promo.style.backgroundSize="cover";
     promo.style.backgroundRepeat="no-repeat";
     promo.style.backgroundPosition=isMobileBanner?"center 62%":"center center";
@@ -368,6 +375,7 @@
     const campaignOnly=!!c.campaign?.usePromoArt&&c.campaign?.key!=="original";
     setText(promoTitle,campaignOnly?(c.campaign.label||c.promo.title):c.promo.title);
     setText(promoSubtitle,campaignOnly?"":c.promo.subtitle);
+    promoTitle.hidden=!!campaignFile;
     promoSubtitle.hidden=campaignOnly;
     markEditorField(promoTitle,"promo","promoTitle");markEditorField(promoSubtitle,"promo","promoSubtitle");
     const pb=promo.querySelector(".lobi-promo-button");if(pb){pb.textContent=c.promo.buttonText||"VER PRODUTOS";pb.href=c.promo.buttonLink||"#produtos";markEditorField(pb,"promo","promoButtonText");}
@@ -414,6 +422,8 @@
       .lobi-promo-banner.lobi-premium-theme-banner h2{font-size:clamp(38px,5.2vw,74px);line-height:.94;letter-spacing:-2.4px;max-width:620px;text-wrap:balance}
       .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-button{background:rgba(5,5,5,.22);color:var(--white);border:1px solid rgba(255,255,255,.30);padding:11px 16px;font-size:9px;border-radius:7px}
       .lobi-promo-banner.lobi-premium-theme-banner .lobi-promo-button:hover{border-color:var(--green);color:var(--green)}
+      .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-content{position:absolute;left:6%;bottom:24px;width:auto;max-width:none}
+      .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-button{margin-top:0;background:rgba(3,3,3,.68);backdrop-filter:blur(4px)}
       .lobi-promo-subtitle{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-light);margin-bottom:14px}
       .lobi-promo-banner h2{font-family:"Archivo Black",sans-serif;font-size:clamp(42px,7vw,100px);line-height:.9;letter-spacing:-4px}
       .lobi-promo-button{display:inline-flex;margin-top:25px;background:var(--green);color:#050505;padding:16px 22px;font-size:10px;font-weight:800;letter-spacing:.14em}
