@@ -101,6 +101,10 @@
   function setThemeMark(container,campaign,kind){
     if(!container)return;
     let mark=container.querySelector(':scope > .lobi-theme-mark');
+    if(kind!=="promo"){
+      mark?.remove();
+      return;
+    }
     if(!campaign||campaign.key==="original"){
       mark?.remove();
       return;
@@ -193,6 +197,8 @@
       const body=manifesto.querySelector(":scope > p:not(.eyebrow)");setText(body,c.manifesto.body);markEditorField(body,"manifesto","manifestoBody");
       const tags=manifesto.querySelector(".manifesto-tags");if(tags){tags.innerHTML="";String(c.manifesto.tags||"").split(",").map(x=>x.trim()).filter(Boolean).forEach(t=>{const s=document.createElement("span");s.textContent=t;tags.appendChild(s);});markEditorField(tags,"manifesto","manifestoTags");}
     }
+
+    document.querySelectorAll(".lobi-theme-mark").forEach(mark=>{if(!mark.closest("#lobiPromoBanner"))mark.remove();});
 
     const promo=ensurePromo();
     promo.dataset.editorSection="promo";promo.hidden=!c.promo.visible;
