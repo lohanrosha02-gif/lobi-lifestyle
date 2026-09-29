@@ -3,7 +3,7 @@
    CATÁLOGO CONECTADO AO SUPABASE
    ========================================================= */
 
-const WHATSAPP_NUMBER = "5583993149486";
+const WHATSAPP_NUMBER = "5583993149486"; // +55 83 99314-9486
 const sb = window.lobiSupabase;
 
 let products = [];
