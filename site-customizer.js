@@ -111,7 +111,7 @@
     promo.style.backgroundSize="cover";
     promo.style.backgroundImage=c.promo.imageUrl
       ? 'linear-gradient(rgba(5,5,5,'+(c.promo.overlay/100)+'),rgba(5,5,5,'+(c.promo.overlay/100)+')),url("'+c.promo.imageUrl.replaceAll('"','%22')+'")'
-      : 'linear-gradient(135deg,rgba(183,255,0,.12),rgba(239,43,32,.08))';
+      : `linear-gradient(135deg,${c.theme.primary}24,${c.theme.secondary}18)`;
     const promoTitle=promo.querySelector("h2");const promoSubtitle=promo.querySelector(".lobi-promo-subtitle");setText(promoTitle,c.promo.title);setText(promoSubtitle,c.promo.subtitle);markEditorField(promoTitle,"promo","promoTitle");markEditorField(promoSubtitle,"promo","promoSubtitle");
     const pb=promo.querySelector(".lobi-promo-button");if(pb){pb.textContent=c.promo.buttonText||"VER PRODUTOS";pb.href=c.promo.buttonLink||"#produtos";markEditorField(pb,"promo","promoButtonText");}
 
