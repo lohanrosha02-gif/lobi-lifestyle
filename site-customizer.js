@@ -160,7 +160,7 @@
       hero.style.backgroundImage=heroArt
         ? 'linear-gradient(rgba(5,5,5,'+(c.hero.overlay/100)+'),rgba(5,5,5,'+(c.hero.overlay/100)+')),url("'+heroArt.replaceAll('"','%22')+'")'
         : "";
-      setThemeMark(hero,c.campaign,"hero");
+      hero.querySelector(":scope > .lobi-theme-mark")?.remove();
       const heroEyebrow=hero.querySelector(".hero-content .eyebrow");setText(heroEyebrow,c.hero.eyebrow);markEditorField(heroEyebrow,"hero","heroEyebrow");
       const h1=hero.querySelector("h1");
       if(h1){
