@@ -193,33 +193,16 @@
       "esquentaBlack","blackFriday","cyberMonday","liquidacao","freteGratis",
       "aniversarioLobi","dropEspecial","voltaAulas","verao","inverno"
     ]);
-    const desktopCreatedHere={
-      halloween:"assets/themes/halloween-lobi.webp",
-      natal:"assets/themes/natal-lobi.webp",
-      saoJoao:"assets/themes/sao-joao-lobi.webp",
-      blackFriday:"assets/themes/black-friday-lobi.webp",
-      diaNamorados:"assets/themes/namorados-lobi.webp",
-      diaMaes:"assets/themes/maes-lobi.webp",
-      verao:"assets/themes/verao-lobi.webp",
-      inverno:"assets/themes/inverno-lobi.webp"
-    };
-    const mobileCreatedHere={
-      saoJoao:"assets/campaigns/art/saoJoao-mobile.webp",
-      halloween:"assets/campaigns/art/halloween-mobile.webp",
-      natal:"assets/campaigns/art/natal-mobile.webp",
-      diaMaes:"assets/campaigns/art/diaMaes-mobile.webp",
-      diaNamorados:"assets/campaigns/art/diaNamorados-mobile.webp",
-      blackFriday:"assets/campaigns/art/blackFriday-mobile.webp",
-      carnaval:"assets/campaigns/art/carnaval-mobile.webp",
-      pascoa:"assets/campaigns/art/pascoa-mobile.webp",
-      verao:"assets/campaigns/art/verao-mobile.webp",
-      inverno:"assets/campaigns/art/inverno-mobile.webp"
-    };
+    const hdThemes=new Set([
+      "saoJoao","halloween","natal","diaMaes","diaNamorados",
+      "blackFriday","carnaval","pascoa","verao","inverno"
+    ]);
     const key=campaign?.key||"";
     if(!available.has(key))return "";
-    if(mobile&&mobileCreatedHere[key])return mobileCreatedHere[key]+"?v=10";
-    if(!mobile&&desktopCreatedHere[key])return desktopCreatedHere[key]+"?v=10";
-    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=10";
+    if(hdThemes.has(key)){
+      return "assets/campaigns/hd/"+key+"-"+(mobile?"mobile":"desktop")+".webp?v=11";
+    }
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=11";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
@@ -402,6 +385,9 @@
 
     if(campaignFile){
       campaignImg.src=campaignFile;
+      campaignImg.alt=(c.campaign?.label||"Campanha LOBI")+" — arte temática";
+      campaignImg.width=isMobileBanner?1080:1672;
+      campaignImg.height=isMobileBanner?1350:941;
       campaignImg.hidden=false;
       promo.style.backgroundImage="";
       promo.style.backgroundColor="#050505";
