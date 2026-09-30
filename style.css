@@ -3336,3 +3336,112 @@ body{
         gap:30px;
     }
 }
+
+
+/* LOBI MOBILE HERO POLISH V5 */
+@media(max-width:700px){
+    /* Texto mais alto e composição mais editorial */
+    .hero{
+        min-height:calc(100svh - 66px);
+        padding:clamp(118px,18vh,168px) 6% 56px;
+        align-items:flex-start;
+    }
+
+    .hero-content{
+        max-width:94%;
+        margin:0;
+    }
+
+    .hero .eyebrow{
+        margin-bottom:16px;
+        font-size:7.5px;
+        letter-spacing:3px;
+        color:#8c8c8c;
+    }
+
+    .hero h1{
+        max-width:94%;
+        font-size:clamp(44px,13.4vw,64px);
+        line-height:.92;
+        letter-spacing:-2px;
+    }
+
+    .hero h1 span::after{
+        width:7px;
+        height:7px;
+        margin-left:8px;
+    }
+
+    .hero-description{
+        max-width:86%;
+        margin:20px 0 24px;
+        color:#929292;
+        line-height:1.7;
+        font-size:11.5px;
+    }
+
+    .primary-button{
+        min-width:178px;
+        width:auto;
+        padding:12px 15px;
+        gap:25px;
+        border-radius:5px;
+        font-size:8px;
+        letter-spacing:1.35px;
+        box-shadow:none;
+    }
+
+    .primary-button span{
+        font-size:15px;
+    }
+
+    /* No celular, removemos o bloco lateral que competia com o conteúdo */
+    .hero-side{
+        display:none!important;
+    }
+
+    .hero-detail{
+        opacity:.18!important;
+    }
+
+    .hero-detail.green{
+        width:54px;
+        height:1px;
+        top:13%;
+        right:9%;
+        transform:rotate(-8deg);
+    }
+
+    .hero-detail.red{
+        display:none;
+    }
+
+    .hero::before{
+        width:260px;
+        height:260px;
+        right:-170px;
+        bottom:-130px;
+        opacity:.55;
+    }
+
+    .hero::after{
+        font-size:36vw;
+        right:-5vw;
+        bottom:1.5%;
+        opacity:.72;
+    }
+}
+
+@media(max-width:390px){
+    .hero{
+        padding-top:clamp(104px,16vh,142px);
+    }
+
+    .hero h1{
+        font-size:clamp(41px,13vw,57px);
+    }
+
+    .hero-description{
+        max-width:90%;
+    }
+}
