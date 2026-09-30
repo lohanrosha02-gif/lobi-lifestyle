@@ -1,0 +1,31 @@
+name: LOBI Canva Fullres Test
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download full resolution test
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p assets/campaigns/hd-test
+          URL='https://media.canva.com/v2/image-resize/format:PNG/height:941/quality:100/uri:ifs%3A%2F%2FM%2Ff4339b8b-ae31-49c0-a2d0-b180c16bb167/watermark:F/width:1672?csig=AAAAAAAAAAAAAAAAAAAAAFVgeFIG18WwEdxS46QEG7ss7A1_yU1b1LDrLK5YEsDH&exp=1790752480&osig=AAAAAAAAAAAAAAAAAAAAAOun_9qwBrMqbNjbbZqiVnsGmzTYoxK2QDQKHxqkUXWg&signer=media-rpc&x-canva-quality=thumbnail'
+          curl -fL "$URL" -o assets/campaigns/hd-test/saoJoao.png
+          file assets/campaigns/hd-test/saoJoao.png
+          python - <<'PY'
+          from PIL import Image
+          im=Image.open('assets/campaigns/hd-test/saoJoao.png')
+          print(im.size)
+          assert im.width >= 1600 and im.height >= 900, im.size
+          PY
+      - name: Commit test asset
+        run: |
+          git config user.name "lobi-bot"
+          git config user.email "actions@github.com"
+          git add assets/campaigns/hd-test/saoJoao.png
+          git commit -m "Teste arte HD Sao Joao via Canva" || exit 0
+          git push
