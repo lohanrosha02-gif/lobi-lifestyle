@@ -200,9 +200,9 @@
     const key=campaign?.key||"";
     if(!available.has(key))return "";
     if(hdThemes.has(key)){
-      return "assets/campaigns/hd/"+key+"-"+(mobile?"mobile":"desktop")+".webp?v=11";
+      return "assets/campaigns/hd/"+key+"-"+(mobile?"mobile":"desktop")+".webp?v=13";
     }
-    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=11";
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=13";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
