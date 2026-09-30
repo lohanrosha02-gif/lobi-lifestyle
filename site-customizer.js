@@ -295,7 +295,7 @@
 
   function apply(config){
     const c=deepMerge(JSON.parse(JSON.stringify(defaults)),config||{});
-    window.__lobiEditorConfig=c;
+    window.__lobiEditorConfig=c; document.body.dataset.lobiCampaign=c.campaign?.key||"original";
     const root=document.documentElement.style;
     root.setProperty("--black",c.theme.background);
     root.setProperty("--white",c.theme.text);
