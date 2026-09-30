@@ -1,5 +1,8 @@
 name: LOBI Canva Fullres Test
 on:
+  push:
+    paths:
+      - '.github/workflows/lobi-canva-fullres-test.yml'
   workflow_dispatch:
 permissions:
   contents: write
