@@ -193,9 +193,20 @@
       "esquentaBlack","blackFriday","cyberMonday","liquidacao","freteGratis",
       "aniversarioLobi","dropEspecial","voltaAulas","verao","inverno"
     ]);
+    const createdHere={
+      halloween:"assets/themes/halloween-lobi.webp",
+      natal:"assets/themes/natal-lobi.webp",
+      saoJoao:"assets/themes/sao-joao-lobi.webp",
+      blackFriday:"assets/themes/black-friday-lobi.webp",
+      diaNamorados:"assets/themes/namorados-lobi.webp",
+      diaMaes:"assets/themes/maes-lobi.webp",
+      verao:"assets/themes/verao-lobi.webp",
+      inverno:"assets/themes/inverno-lobi.webp"
+    };
     const key=campaign?.key||"";
     if(!available.has(key))return "";
-    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=3";
+    if(!mobile&&createdHere[key])return createdHere[key]+"?v=5";
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=5";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
@@ -307,7 +318,7 @@
       hero.style.backgroundPosition=c.hero.imageX+"% "+c.hero.imageY+"%";
       hero.style.backgroundSize="cover";
       hero.style.backgroundRepeat="no-repeat";
-      const heroArt=c.campaign?.useHeroArt?themeArt(c.campaign,"hero",window.matchMedia("(max-width: 700px)").matches):(c.hero.imageUrl||"");
+      const heroArt=c.hero.imageUrl||"";
       hero.style.backgroundImage=heroArt
         ? 'linear-gradient(rgba(5,5,5,'+(c.hero.overlay/100)+'),rgba(5,5,5,'+(c.hero.overlay/100)+')),url("'+heroArt.replaceAll('"','%22')+'")'
         : "";
@@ -366,14 +377,33 @@
     promo.dataset.campaignFile=campaignFile?"1":"0";
     promo.classList.toggle("lobi-premium-theme-banner",campaignArt);
     promo.classList.toggle("lobi-file-theme-banner",!!campaignFile);
-    promo.style.backgroundSize="cover";
-    promo.style.backgroundRepeat="no-repeat";
-    promo.style.backgroundPosition=isMobileBanner?"center 62%":"center center";
-    promo.style.backgroundImage=promoArt
-      ? (campaignArt
-          ? 'linear-gradient('+(isMobileBanner?'180deg':'90deg')+',rgba(3,3,3,'+(isMobileBanner?'.18':'.84')+') 0%,rgba(3,3,3,'+(isMobileBanner?'.26':'.56')+') 48%,rgba(3,3,3,'+(isMobileBanner?'.58':'.10')+') 100%),url("'+promoArt.replaceAll('"','%22')+'")'
-          : 'linear-gradient(rgba(5,5,5,'+(c.promo.overlay/100)+'),rgba(5,5,5,'+(c.promo.overlay/100)+')),url("'+promoArt.replaceAll('"','%22')+'")')
-      : `linear-gradient(135deg,${c.theme.primary}24,${c.theme.secondary}18)`;
+
+    let campaignImg=promo.querySelector(":scope > .lobi-promo-media");
+    if(!campaignImg){
+      campaignImg=document.createElement("img");
+      campaignImg.className="lobi-promo-media";
+      campaignImg.alt="";
+      campaignImg.decoding="async";
+      promo.prepend(campaignImg);
+    }
+
+    if(campaignFile){
+      campaignImg.src=campaignFile;
+      campaignImg.hidden=false;
+      promo.style.backgroundImage="";
+      promo.style.backgroundColor="#050505";
+    }else{
+      campaignImg.removeAttribute("src");
+      campaignImg.hidden=true;
+      promo.style.backgroundSize="cover";
+      promo.style.backgroundRepeat="no-repeat";
+      promo.style.backgroundPosition=isMobileBanner?"center 62%":"center center";
+      promo.style.backgroundImage=promoArt
+        ? (campaignArt
+            ? 'linear-gradient('+(isMobileBanner?'180deg':'90deg')+',rgba(3,3,3,'+(isMobileBanner?'.18':'.84')+') 0%,rgba(3,3,3,'+(isMobileBanner?'.26':'.56')+') 48%,rgba(3,3,3,'+(isMobileBanner?'.58':'.10')+') 100%),url("'+promoArt.replaceAll('"','%22')+'")'
+            : 'linear-gradient(rgba(5,5,5,'+(c.promo.overlay/100)+'),rgba(5,5,5,'+(c.promo.overlay/100)+')),url("'+promoArt.replaceAll('"','%22')+'")')
+        : `linear-gradient(135deg,${c.theme.primary}24,${c.theme.secondary}18)`;
+    }
     setThemeMark(promo,c.campaign,"promo");
     const promoTitle=promo.querySelector("h2");const promoSubtitle=promo.querySelector(".lobi-promo-subtitle");
     const campaignOnly=!!c.campaign?.usePromoArt&&c.campaign?.key!=="original";
