@@ -2853,3 +2853,486 @@ span:nth-child(2) {
     }
 
 }
+
+/* LOBI STORE REFINEMENT V4 */
+:root{
+    --surface-1:#080808;
+    --surface-2:#0b0b0b;
+    --soft-line:rgba(255,255,255,.075);
+}
+
+/* Base mais editorial: menos efeitos, mais respiro */
+body{
+    background:#050505;
+    letter-spacing:.01em;
+}
+
+.header{
+    height:74px;
+    padding:0 4.5%;
+    background:rgba(5,5,5,.88);
+    border-bottom:1px solid rgba(255,255,255,.07);
+    backdrop-filter:blur(18px) saturate(120%);
+    -webkit-backdrop-filter:blur(18px) saturate(120%);
+}
+
+.brand img{
+    width:102px;
+    max-height:54px;
+}
+
+.nav{
+    gap:30px;
+    font-size:10px;
+    letter-spacing:1.25px;
+}
+
+.nav a::after{
+    bottom:-8px;
+    height:1px;
+}
+
+.nav a:nth-child(2)::before{
+    display:none;
+}
+
+.header-actions{
+    gap:16px;
+}
+
+.cart-button span{
+    width:20px;
+    height:20px;
+    font-size:9px;
+}
+
+/* Hero limpo. O produto e o texto são protagonistas. */
+.hero{
+    min-height:clamp(600px,78vh,760px);
+    padding:7vw 6%;
+    background-color:#050505;
+}
+
+.hero::after{
+    right:-1vw;
+    bottom:-1%;
+    font-size:22vw;
+    letter-spacing:-10px;
+    color:rgba(255,255,255,.017);
+}
+
+.hero::before{
+    width:360px;
+    height:360px;
+    right:-220px;
+    bottom:-180px;
+    background:rgba(183,255,0,.035);
+    filter:blur(110px);
+}
+
+.hero-detail{
+    opacity:.4;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.eyebrow{
+    margin-bottom:20px;
+    font-size:8px;
+    letter-spacing:3.2px;
+}
+
+.hero h1{
+    max-width:880px;
+    font-size:clamp(54px,7.3vw,108px);
+    line-height:.9;
+    letter-spacing:-4px;
+}
+
+.hero h1 span::after{
+    width:8px;
+    height:8px;
+    margin-left:10px;
+}
+
+.hero-description{
+    max-width:420px;
+    margin:30px 0 32px;
+    color:#909090;
+    line-height:1.72;
+}
+
+.primary-button{
+    min-width:0;
+    gap:32px;
+    padding:15px 18px;
+    font-size:9px;
+    letter-spacing:1.5px;
+    border:1px solid var(--green);
+}
+
+.primary-button:hover{
+    transform:translateY(-2px);
+}
+
+/* Faixa mais discreta */
+.marquee{
+    padding:17px 5%;
+    background:#070707;
+    border-color:rgba(255,255,255,.065);
+}
+
+.marquee div{
+    font-size:8px;
+    letter-spacing:3px;
+    color:#aaa;
+}
+
+.marquee span{
+    margin:0 25px;
+    opacity:.7;
+}
+
+/* Produtos com aparência de catálogo */
+.products-section{
+    padding:96px 5% 112px;
+}
+
+.section-heading{
+    margin-bottom:38px;
+}
+
+.section-heading h2{
+    font-size:clamp(40px,5.4vw,72px);
+    letter-spacing:-2.5px;
+}
+
+.section-heading > p{
+    max-width:360px;
+    color:#858585;
+}
+
+.filters{
+    gap:8px;
+    margin-bottom:26px;
+}
+
+.filter{
+    padding:10px 15px;
+    border-color:rgba(255,255,255,.09);
+    border-radius:5px;
+    font-size:8px;
+    letter-spacing:1.4px;
+}
+
+.filter.active{
+    background:var(--green);
+    border-color:var(--green);
+}
+
+.products-grid{
+    gap:18px;
+}
+
+.product-card{
+    transition:transform .25s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-3px);
+}
+
+.product-image{
+    border:1px solid rgba(255,255,255,.055);
+    border-radius:7px;
+    background:linear-gradient(145deg,#101010,#080808 70%);
+    transition:border-color .3s ease,box-shadow .3s ease;
+}
+
+.product-card:hover .product-image{
+    border-color:rgba(183,255,0,.18);
+    box-shadow:0 16px 46px rgba(0,0,0,.3);
+}
+
+.product-image img{
+    transition:transform .45s ease;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.02);
+}
+
+.product-tag{
+    top:12px;
+    left:12px;
+    padding:6px 8px;
+    border-radius:4px;
+    font-size:7px;
+    letter-spacing:.9px;
+}
+
+.product-tag::after{
+    display:none;
+}
+
+.product-info{
+    padding:15px 2px 29px;
+}
+
+.product-info h3{
+    font-size:11px;
+    letter-spacing:.7px;
+}
+
+.product-info p{
+    margin-top:7px;
+    color:#8f8f8f;
+}
+
+/* Banner: arquivo de imagem real, sem poluição visual */
+.lobi-promo-banner{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    border-top:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    background:#050505;
+}
+
+.lobi-promo-media{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    pointer-events:none;
+}
+
+.lobi-promo-banner.lobi-file-theme-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(90deg,rgba(3,3,3,.48) 0%,rgba(3,3,3,.18) 38%,rgba(3,3,3,.04) 78%);
+    pointer-events:none;
+}
+
+.lobi-promo-banner .lobi-promo-content{
+    position:relative;
+    z-index:2;
+}
+
+.lobi-promo-banner.lobi-file-theme-banner .lobi-promo-content{
+    left:auto;
+    bottom:auto;
+    width:auto;
+    max-width:none;
+    align-self:flex-end;
+    margin:0 0 28px 6%;
+}
+
+.lobi-promo-banner.lobi-file-theme-banner .lobi-promo-button{
+    margin:0;
+    min-height:38px;
+    padding:10px 14px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:6px;
+    background:rgba(5,5,5,.55);
+    font-size:8px;
+    letter-spacing:1.2px;
+    backdrop-filter:blur(7px);
+}
+
+/* Manifesto menor e mais sofisticado */
+.manifesto{
+    min-height:62vh;
+    padding:8% 8%;
+    background:linear-gradient(180deg,#050505,#070707);
+}
+
+.manifesto::before{
+    width:1px;
+    height:96px;
+    right:8%;
+    top:18%;
+    background:rgba(183,255,0,.5);
+    transform:none;
+}
+
+.manifesto h2{
+    max-width:980px;
+    font-size:clamp(46px,6.7vw,92px);
+    line-height:.96;
+    letter-spacing:-3px;
+}
+
+.manifesto > p:not(.eyebrow){
+    max-width:500px;
+    margin-top:30px;
+}
+
+.manifesto-tags{
+    gap:30px;
+    margin-top:46px;
+    color:#777;
+}
+
+/* Rodapé mais compacto */
+.footer{
+    padding:58px 5%;
+    gap:38px;
+    background:#040404;
+    border-top:1px solid rgba(255,255,255,.065);
+}
+
+.footer-brand img{
+    width:108px;
+}
+
+.footer h4{
+    margin-bottom:18px;
+}
+
+.footer a{
+    margin:12px 0;
+}
+
+.copyright{
+    padding:20px 5%;
+}
+
+/* Movimentos sutis */
+@media (prefers-reduced-motion:no-preference){
+    .product-card,
+    .primary-button,
+    .filter,
+    .footer a{
+        transition-duration:.25s;
+    }
+}
+
+@media(max-width:700px){
+    .header{
+        height:66px;
+        padding:0 5%;
+    }
+
+    .brand img{
+        width:92px;
+        max-height:48px;
+    }
+
+    .hero{
+        min-height:calc(100svh - 66px);
+        padding:72px 6% 58px;
+        align-items:flex-end;
+    }
+
+    .hero::after{
+        font-size:42vw;
+        right:-8vw;
+        bottom:3%;
+        letter-spacing:-6px;
+    }
+
+    .hero h1{
+        font-size:clamp(47px,15vw,72px);
+        line-height:.9;
+        letter-spacing:-2.5px;
+    }
+
+    .hero-description{
+        max-width:90%;
+        margin:24px 0 26px;
+        font-size:12px;
+    }
+
+    .primary-button{
+        padding:13px 15px;
+        gap:26px;
+    }
+
+    .marquee{
+        padding:14px 4%;
+    }
+
+    .products-section{
+        padding:70px 4.5% 82px;
+    }
+
+    .section-heading{
+        margin-bottom:28px;
+    }
+
+    .section-heading h2{
+        font-size:clamp(38px,12vw,56px);
+    }
+
+    .products-grid{
+        gap:10px;
+    }
+
+    .product-image{
+        border-radius:5px;
+    }
+
+    .product-info{
+        padding:12px 1px 24px;
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner{
+        min-height:460px!important;
+        align-items:flex-end!important;
+        padding:0!important;
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-media{
+        object-position:center center;
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner::after{
+        background:linear-gradient(180deg,rgba(3,3,3,.03) 0%,rgba(3,3,3,.08) 52%,rgba(3,3,3,.62) 100%);
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-content{
+        margin:0 0 22px 6%;
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-button{
+        min-height:36px;
+        padding:9px 12px;
+        font-size:8px;
+    }
+
+    .manifesto{
+        min-height:auto;
+        padding:80px 6%;
+    }
+
+    .manifesto::before{
+        height:60px;
+        right:6%;
+        top:12%;
+    }
+
+    .manifesto h2{
+        font-size:clamp(42px,13vw,64px);
+        letter-spacing:-2px;
+    }
+
+    .manifesto-tags{
+        gap:14px;
+        margin-top:34px;
+        flex-wrap:wrap;
+        letter-spacing:2.5px;
+    }
+
+    .footer{
+        padding:48px 6%;
+        gap:30px;
+    }
+}
