@@ -3716,3 +3716,96 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
         opacity:.06!important;
     }
 }
+
+
+/* LOBI THEME ART FINAL V8 */
+/* Encaixe exato das artes HD: 1672x941 no desktop e 1080x1350 no celular. */
+.lobi-promo-banner.lobi-file-theme-banner{
+    width:min(94%,1440px);
+    min-height:0!important;
+    height:auto!important;
+    aspect-ratio:16 / 9;
+    margin:56px auto;
+    border-radius:20px;
+    border-color:rgba(255,255,255,.09);
+    box-shadow:
+        0 34px 96px rgba(0,0,0,.46),
+        0 0 0 1px rgba(183,255,0,.018),
+        inset 0 0 0 1px rgba(255,255,255,.02);
+}
+
+.lobi-promo-banner.lobi-file-theme-banner .lobi-promo-media{
+    object-fit:cover;
+    object-position:center;
+    image-rendering:auto;
+    filter:brightness(.86) saturate(1.01) contrast(1.035);
+    transform:none;
+}
+
+.lobi-promo-banner.lobi-file-theme-banner::after{
+    background:
+        linear-gradient(90deg,rgba(3,3,3,.34) 0%,rgba(3,3,3,.09) 38%,rgba(3,3,3,.025) 68%,rgba(3,3,3,.15) 100%),
+        linear-gradient(180deg,rgba(0,0,0,.015),rgba(0,0,0,.10));
+}
+
+.lobi-promo-banner.lobi-file-theme-banner::before{
+    height:1px;
+    left:10%;
+    right:10%;
+    opacity:.68;
+    box-shadow:0 0 14px rgba(183,255,0,.12);
+}
+
+/* Neon um pouco mais presente, ainda atrás do conteúdo. */
+.lobi-theme-decor-item{
+    opacity:.125!important;
+    filter:
+        drop-shadow(0 0 9px currentColor)
+        drop-shadow(0 0 21px currentColor)!important;
+}
+.lobi-theme-decor-hero .lobi-theme-decor-item-1,
+.lobi-theme-decor-hero .lobi-theme-decor-item-2{
+    opacity:.145!important;
+}
+.lobi-theme-decor-products .lobi-theme-decor-item{opacity:.085!important}
+.lobi-theme-decor-manifesto .lobi-theme-decor-item{opacity:.10!important}
+.lobi-theme-decor-footer .lobi-theme-decor-item{opacity:.075!important}
+
+@media(max-width:700px){
+    .lobi-promo-banner.lobi-file-theme-banner{
+        width:calc(100% - 18px);
+        aspect-ratio:4 / 5;
+        margin:28px auto 42px;
+        border-radius:16px;
+        box-shadow:
+            0 22px 60px rgba(0,0,0,.42),
+            0 0 0 1px rgba(183,255,0,.015),
+            inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-media{
+        object-position:center;
+        filter:brightness(.84) saturate(1.01) contrast(1.035);
+    }
+
+    .lobi-promo-banner.lobi-file-theme-banner::after{
+        background:
+            linear-gradient(180deg,rgba(3,3,3,.035) 0%,rgba(3,3,3,.05) 55%,rgba(3,3,3,.42) 100%);
+    }
+
+    .lobi-theme-decor-item{
+        opacity:.095!important;
+        filter:
+            drop-shadow(0 0 7px currentColor)
+            drop-shadow(0 0 15px currentColor)!important;
+    }
+    .lobi-theme-decor-hero .lobi-theme-decor-item-1,
+    .lobi-theme-decor-hero .lobi-theme-decor-item-2{
+        opacity:.115!important;
+    }
+    .lobi-theme-decor-products .lobi-theme-decor-item,
+    .lobi-theme-decor-manifesto .lobi-theme-decor-item,
+    .lobi-theme-decor-footer .lobi-theme-decor-item{
+        opacity:.065!important;
+    }
+}
