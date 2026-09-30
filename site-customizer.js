@@ -193,7 +193,7 @@
       "esquentaBlack","blackFriday","cyberMonday","liquidacao","freteGratis",
       "aniversarioLobi","dropEspecial","voltaAulas","verao","inverno"
     ]);
-    const createdHere={
+    const desktopCreatedHere={
       halloween:"assets/themes/halloween-lobi.webp",
       natal:"assets/themes/natal-lobi.webp",
       saoJoao:"assets/themes/sao-joao-lobi.webp",
@@ -203,10 +203,23 @@
       verao:"assets/themes/verao-lobi.webp",
       inverno:"assets/themes/inverno-lobi.webp"
     };
+    const mobileCreatedHere={
+      saoJoao:"assets/campaigns/art/saoJoao-mobile.webp",
+      halloween:"assets/campaigns/art/halloween-mobile.webp",
+      natal:"assets/campaigns/art/natal-mobile.webp",
+      diaMaes:"assets/campaigns/art/diaMaes-mobile.webp",
+      diaNamorados:"assets/campaigns/art/diaNamorados-mobile.webp",
+      blackFriday:"assets/campaigns/art/blackFriday-mobile.webp",
+      carnaval:"assets/campaigns/art/carnaval-mobile.webp",
+      pascoa:"assets/campaigns/art/pascoa-mobile.webp",
+      verao:"assets/campaigns/art/verao-mobile.webp",
+      inverno:"assets/campaigns/art/inverno-mobile.webp"
+    };
     const key=campaign?.key||"";
     if(!available.has(key))return "";
-    if(!mobile&&createdHere[key])return createdHere[key]+"?v=5";
-    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=5";
+    if(mobile&&mobileCreatedHere[key])return mobileCreatedHere[key]+"?v=10";
+    if(!mobile&&desktopCreatedHere[key])return desktopCreatedHere[key]+"?v=10";
+    return "assets/campaigns/"+key+"-"+(mobile?"mobile":"desktop")+".svg?v=10";
   }
 
   function themeArt(campaign,variant="hero",mobile=false){
