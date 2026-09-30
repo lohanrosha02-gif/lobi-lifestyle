@@ -3445,3 +3445,95 @@ body{
         max-width:90%;
     }
 }
+
+
+/* LOBI CAMPAIGN BUTTON EFFECTS V6 */
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .primary-button,
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .lobi-promo-button{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease;
+}
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .primary-button::before,
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .lobi-promo-button::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    z-index:-1;
+    opacity:0;
+    background:linear-gradient(110deg,transparent 15%,rgba(255,255,255,.18) 45%,transparent 72%);
+    transform:translateX(-120%);
+    transition:opacity .2s ease,transform .45s ease;
+}
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .primary-button:hover,
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .lobi-promo-button:hover{
+    transform:translateY(-2px);
+}
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .primary-button:hover::before,
+body[data-lobi-campaign]:not([data-lobi-campaign="original"]) .lobi-promo-button:hover::before{
+    opacity:1;
+    transform:translateX(120%);
+}
+
+/* Cores por campanha, sem transformar o site inteiro */
+body[data-lobi-campaign="saoJoao"] .primary-button,
+body[data-lobi-campaign="saoJoao"] .lobi-promo-button{
+    box-shadow:0 0 0 1px rgba(255,106,0,.16),0 10px 28px rgba(255,106,0,.10);
+}
+body[data-lobi-campaign="halloween"] .primary-button,
+body[data-lobi-campaign="halloween"] .lobi-promo-button{
+    border-color:rgba(255,90,0,.55);
+    box-shadow:0 0 0 1px rgba(255,90,0,.12),0 10px 30px rgba(255,90,0,.12);
+}
+body[data-lobi-campaign="natal"] .primary-button,
+body[data-lobi-campaign="natal"] .lobi-promo-button{
+    box-shadow:0 0 0 1px rgba(239,43,32,.15),0 10px 28px rgba(239,43,32,.10);
+}
+body[data-lobi-campaign="diaNamorados"] .primary-button,
+body[data-lobi-campaign="diaNamorados"] .lobi-promo-button{
+    border-color:rgba(239,43,32,.52);
+    box-shadow:0 10px 28px rgba(239,43,32,.10);
+}
+body[data-lobi-campaign="diaMaes"] .primary-button,
+body[data-lobi-campaign="diaMaes"] .lobi-promo-button{
+    border-color:rgba(233,167,184,.5);
+    box-shadow:0 10px 28px rgba(233,167,184,.08);
+}
+body[data-lobi-campaign="blackFriday"] .primary-button,
+body[data-lobi-campaign="blackFriday"] .lobi-promo-button{
+    box-shadow:0 0 0 1px rgba(183,255,0,.18),0 10px 30px rgba(183,255,0,.12);
+}
+body[data-lobi-campaign="carnaval"] .primary-button,
+body[data-lobi-campaign="carnaval"] .lobi-promo-button{
+    box-shadow:0 0 0 1px rgba(255,106,0,.16),0 10px 30px rgba(183,255,0,.10);
+}
+body[data-lobi-campaign="pascoa"] .primary-button,
+body[data-lobi-campaign="pascoa"] .lobi-promo-button{
+    box-shadow:0 0 0 1px rgba(183,255,0,.15),0 10px 26px rgba(183,255,0,.08);
+}
+body[data-lobi-campaign="verao"] .primary-button,
+body[data-lobi-campaign="verao"] .lobi-promo-button{
+    box-shadow:0 10px 30px rgba(0,180,170,.10),0 0 0 1px rgba(183,255,0,.14);
+}
+body[data-lobi-campaign="inverno"] .primary-button,
+body[data-lobi-campaign="inverno"] .lobi-promo-button{
+    border-color:rgba(185,210,223,.45);
+    box-shadow:0 10px 30px rgba(185,210,223,.08);
+}
+
+/* Imagens temáticas entram um pouco mais escuras para combinar com a LOBI */
+.lobi-promo-banner.lobi-file-theme-banner .lobi-promo-media{
+    filter:brightness(.74) saturate(.92) contrast(1.03);
+}
+.lobi-promo-banner.lobi-file-theme-banner::after{
+    background:linear-gradient(90deg,rgba(3,3,3,.58) 0%,rgba(3,3,3,.27) 42%,rgba(3,3,3,.10) 100%);
+}
+@media(max-width:700px){
+    .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-media{
+        filter:brightness(.70) saturate(.94) contrast(1.04);
+    }
+    .lobi-promo-banner.lobi-file-theme-banner::after{
+        background:linear-gradient(180deg,rgba(3,3,3,.12) 0%,rgba(3,3,3,.18) 52%,rgba(3,3,3,.68) 100%);
+    }
+}
