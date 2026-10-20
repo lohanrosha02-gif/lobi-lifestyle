@@ -704,6 +704,7 @@
     parent.postMessage({type:"lobi-preview-ready"},"*");
   }
 
+  window.lobiReloadConfig=load;
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>{load().then(setupEditorPreview);});
   else load().then(setupEditorPreview);
 
