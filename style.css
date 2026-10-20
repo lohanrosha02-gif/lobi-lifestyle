@@ -17,18 +17,18 @@
 
 :root {
 
-    --black: #050505;
-    --black-soft: #0a0a0a;
-    --black-card: #0d0d0d;
+    --black:#0c0f11;
+    --black-soft:#111617;
+    --black-card:#141819;
 
-    --gray: #151515;
-    --gray-2: #1d1d1d;
-    --gray-light: #9a9a9a;
+    --gray:#191e20;
+    --gray-2:#232a2b;
+    --gray-light:#98a5a0;
 
-    --white: #f4f4f1;
+    --white:#f3f7f4;
 
-    --green: #b7ff00;
-    --green-hover: #c7ff38;
+    --green: #c0f16e;
+    --green-hover: #d5ff95;
 
     --red: #ef2b20;
     --red-dark: #9e1712;
@@ -868,7 +868,7 @@ img {
 .product-card:hover
 .product-image {
     border-color:
-        rgba(183, 255, 0, 0.28);
+        rgba(192,241,110, 0.28);
 }
 
 
@@ -2926,7 +2926,7 @@ body{
     height:360px;
     right:-220px;
     bottom:-180px;
-    background:rgba(183,255,0,.035);
+    background:rgba(192,241,110,.035);
     filter:blur(110px);
 }
 
@@ -3052,7 +3052,7 @@ body{
 }
 
 .product-card:hover .product-image{
-    border-color:rgba(183,255,0,.18);
+    border-color:rgba(192,241,110,.18);
     box-shadow:0 16px 46px rgba(0,0,0,.3);
 }
 
@@ -3159,7 +3159,7 @@ body{
     height:96px;
     right:8%;
     top:18%;
-    background:rgba(183,255,0,.5);
+    background:rgba(192,241,110,.5);
     transform:none;
 }
 
@@ -3502,19 +3502,19 @@ body[data-lobi-campaign="diaMaes"] .lobi-promo-button{
 }
 body[data-lobi-campaign="blackFriday"] .primary-button,
 body[data-lobi-campaign="blackFriday"] .lobi-promo-button{
-    box-shadow:0 0 0 1px rgba(183,255,0,.18),0 10px 30px rgba(183,255,0,.12);
+    box-shadow:0 0 0 1px rgba(192,241,110,.18),0 10px 30px rgba(192,241,110,.12);
 }
 body[data-lobi-campaign="carnaval"] .primary-button,
 body[data-lobi-campaign="carnaval"] .lobi-promo-button{
-    box-shadow:0 0 0 1px rgba(255,106,0,.16),0 10px 30px rgba(183,255,0,.10);
+    box-shadow:0 0 0 1px rgba(255,106,0,.16),0 10px 30px rgba(192,241,110,.10);
 }
 body[data-lobi-campaign="pascoa"] .primary-button,
 body[data-lobi-campaign="pascoa"] .lobi-promo-button{
-    box-shadow:0 0 0 1px rgba(183,255,0,.15),0 10px 26px rgba(183,255,0,.08);
+    box-shadow:0 0 0 1px rgba(192,241,110,.15),0 10px 26px rgba(192,241,110,.08);
 }
 body[data-lobi-campaign="verao"] .primary-button,
 body[data-lobi-campaign="verao"] .lobi-promo-button{
-    box-shadow:0 10px 30px rgba(0,180,170,.10),0 0 0 1px rgba(183,255,0,.14);
+    box-shadow:0 10px 30px rgba(0,180,170,.10),0 0 0 1px rgba(192,241,110,.14);
 }
 body[data-lobi-campaign="inverno"] .primary-button,
 body[data-lobi-campaign="inverno"] .lobi-promo-button{
@@ -3610,7 +3610,7 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
 .lobi-promo-banner.lobi-file-theme-banner .lobi-promo-button:hover{
     border-color:var(--green);
     color:var(--green);
-    box-shadow:0 0 0 1px rgba(183,255,0,.10),0 12px 34px rgba(0,0,0,.32);
+    box-shadow:0 0 0 1px rgba(192,241,110,.10),0 12px 34px rgba(0,0,0,.32);
 }
 
 /* Um pouco mais de presença para os enfeites neon, sem poluir. */
@@ -3730,7 +3730,7 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
     border-color:rgba(255,255,255,.09);
     box-shadow:
         0 34px 96px rgba(0,0,0,.46),
-        0 0 0 1px rgba(183,255,0,.018),
+        0 0 0 1px rgba(192,241,110,.018),
         inset 0 0 0 1px rgba(255,255,255,.02);
 }
 
@@ -3753,7 +3753,7 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
     left:10%;
     right:10%;
     opacity:.68;
-    box-shadow:0 0 14px rgba(183,255,0,.12);
+    box-shadow:0 0 14px rgba(192,241,110,.12);
 }
 
 /* Neon um pouco mais presente, ainda atrás do conteúdo. */
@@ -3779,7 +3779,7 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
         border-radius:16px;
         box-shadow:
             0 22px 60px rgba(0,0,0,.42),
-            0 0 0 1px rgba(183,255,0,.015),
+            0 0 0 1px rgba(192,241,110,.015),
             inset 0 0 0 1px rgba(255,255,255,.02);
     }
 
@@ -3809,3 +3809,11 @@ body[data-lobi-campaign="inverno"] .lobi-promo-button{
         opacity:.065!important;
     }
 }
+
+/* DESIGN SYSTEM | Central de Links - tema visual compartilhado */
+:root{--black:#0c0f11;--black-soft:#111617;--black-card:#141819;--gray:#191e20;--gray-2:#232a2b;--gray-light:#98a5a0;--white:#f3f7f4;--green:#c0f16e;--green-hover:#d5ff95;--surface-1:#0c0f11;--surface-2:#141819;--soft-line:#293132;--border:rgba(152,165,160,.18)}
+body{background:#0c0f11;color:#f3f7f4}
+.header{background:rgba(12,15,17,.95);border-bottom-color:#293132}
+body::-webkit-scrollbar-track{background:#0c0f11}
+body::-webkit-scrollbar-thumb{background:#293132}
+::selection{background:#c0f16e;color:#141819}
