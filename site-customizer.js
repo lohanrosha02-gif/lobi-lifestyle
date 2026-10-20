@@ -291,6 +291,11 @@
 
   function apply(config){
     const c=deepMerge(JSON.parse(JSON.stringify(defaults)),config||{});
+    // Migração visual: configurações antigas da campanha original usavam fundo preto.
+    if((c.campaign?.key||"original")==="original" &&
+       ["#050505","#0c0f11","#000000"].includes(String(c.theme?.background||"").toLowerCase())){
+      Object.assign(c.theme,{background:"#ffffff",text:"#203124",primary:"#c0f16e",panel:"#f7faf4",muted:"#627669"});
+    }
     window.__lobiEditorConfig=c; document.body.dataset.lobiCampaign=c.campaign?.key||"original";
     const root=document.documentElement.style;
     root.setProperty("--black",c.theme.background);
