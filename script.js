@@ -60,10 +60,10 @@ function escapeHtml(value = "") {
     .replaceAll("'", "&#039;");
 }
 
-async function loadProducts() {
+async function loadProducts({silent=false}={}) {
   if (!productsGrid) return;
 
-  productsGrid.innerHTML = `
+  if(!silent)productsGrid.innerHTML = `
     <div class="no-products">
       <p>Carregando produtos...</p>
     </div>
