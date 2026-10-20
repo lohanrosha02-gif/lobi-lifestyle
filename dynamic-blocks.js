@@ -70,6 +70,7 @@
     if(r.data&&r.data.length){try{render(JSON.parse(r.data[0].description||"[]"));}catch{render([]);}}else render([]);
   }
 
+  window.lobiReloadBlocks=load;
   window.addEventListener("message",e=>{if(e.data&&e.data.type==="lobi-preview-blocks")render(e.data.blocks);});
   window.addEventListener("lobi:layout-applied",()=>{if(current.length)setTimeout(()=>render(current),0);});
   document.addEventListener("click",e=>{
