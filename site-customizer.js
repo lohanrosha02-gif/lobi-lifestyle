@@ -6,7 +6,7 @@
 
   const defaults={
     campaign:{key:"original",label:"LOBI Original",icon:"spark",important:false,useHeroArt:false,usePromoArt:false,accent1:"#b7ff00",accent2:"#ef2b20"},
-    theme:{background:"#050505",text:"#f4f4f1",primary:"#b7ff00",secondary:"#ef2b20",panel:"#0d0d0d",muted:"#9a9a9a"},
+    theme:{background:"#ffffff",text:"#203124",primary:"#c0f16e",secondary:"#ef2b20",panel:"#f7faf4",muted:"#627669"},
     header:{visible:true,height:85,logoWidth:115},
     hero:{visible:true,eyebrow:"LOBI LIFESTYLE · DROP 01",title:"NÃO É SÓ\nROUPA.",accent:"É PRESENÇA.",description:"Streetwear masculino selecionado para quem carrega identidade no jeito de vestir.",buttonText:"VER O DROP",buttonLink:"#produtos",titleMax:125,minHeight:760,imageUrl:"",imageX:50,imageY:50,overlay:45},
     marquee:{visible:true,text:"LOBI LIFESTYLE ✦ STREETWEAR MASCULINO ✦ DROP 01 ✦ PRESENÇA"},
