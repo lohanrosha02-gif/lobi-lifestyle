@@ -3817,3 +3817,62 @@ body{background:#0c0f11;color:#f3f7f4}
 body::-webkit-scrollbar-track{background:#0c0f11}
 body::-webkit-scrollbar-thumb{background:#293132}
 ::selection{background:#c0f16e;color:#141819}
+
+/* TEMA BRANCO PADRÃO | Central de Links 2026-10-20 */
+:root{
+ --black:#ffffff;--black-soft:#f7faf4;--black-card:#fff;
+ --gray:#f4f8f1;--gray-2:#e9f1e6;--gray-light:#64766b;
+ --white:#203124;--green:#c0f16e;--green-hover:#d6ff9f;
+ --surface-1:#ffffff;--surface-2:#f5f9f2;
+ --soft-line:#e1eadf;--border:#e0e9dd
+}
+html,body{background:#fff!important;color:#203124!important}
+body::-webkit-scrollbar-track{background:#fff}
+body::-webkit-scrollbar-thumb{background:#d5e4d0}
+body::-webkit-scrollbar-thumb:hover{background:#8dbc4c}
+.header{background:rgba(255,255,255,.97)!important;border-bottom:1px solid #e0e9dd}
+.header .brand img{filter:brightness(0) saturate(100%);opacity:.88}
+.nav,.nav a,.icon-btn,.cart-button,.menu-button{color:#253d2a!important}
+.nav a:hover,.icon-btn:hover{color:#46752f!important}
+@media(max-width:900px){.nav{background:rgba(255,255,255,.99)!important;border-color:#e2eadd}}
+.cart-button span{color:#172617!important;background:#c0f16e}
+.hero{background:#fff!important;color:#203124}
+.hero:after,.hero::after{color:rgba(78,116,66,.06)!important}
+.hero:before,.hero::before{background:rgba(157,200,121,.07)!important}
+.hero h1{color:#1d3020!important}
+.hero h1 span,.manifesto h2 span{color:#477b2a!important}
+.hero-description,.section-heading>p,.product-info p,.manifesto>p:not(.eyebrow),.footer-brand p,.footer a,.modal-description,.cart-item p{color:#627669!important}
+.hero-side,.eyebrow{color:#6a806e!important}
+.primary-button,.add-cart,.cart-footer>button{background:#c0f16e!important;color:#152511!important;border-color:#c0f16e!important}
+.primary-button:hover,.add-cart:hover,.cart-footer>button:hover{background:#ddffb0!important;color:#192b18!important}
+.marquee{background:#f8fbf6!important;border-color:#e1eadf}
+.marquee div{color:#3d5740}
+.marquee span{color:#598f36}
+.products-section{background:#fff}
+.section-heading h2,.product-info h3,.manifesto h2,.footer h3,.modal-info h2{color:#203124}
+.filter{background:#fff;color:#5b6f60;border-color:#dde9d8}
+.filter:hover{color:#365a31;border-color:#a3d48c}
+.filter.active{background:#c0f16e!important;color:#213a20!important;border-color:#badf90!important}
+.product-image,.modal-image{background:linear-gradient(150deg,#f1f7ee,#f7fbf5)!important;border-color:#e0e9dc}
+.product-card:hover .product-image{border-color:#b2d496}
+.product-info,.modal-info{background:#fff;color:#203124}
+.product-tag{background:#c0f16e;color:#183116}
+.manifesto{background:linear-gradient(180deg,#fff,#f4f9f0)!important}
+.manifesto-tags{color:#57715b}
+.footer{background:#f8faf7!important;color:#233628;border-top:1px solid #e0e9dd}
+.footer a:hover{color:#416e29}
+.modal-overlay,.cart-overlay{background:rgba(21,31,24,.60)}
+.product-modal,.modal-info,.cart{background:#fff!important;color:#203124;border-color:#dce8d8}
+.close-modal,.cart-header button,.quantity-control button,#closeSearch{color:#233829!important}
+.close-modal{background:#f5f9f1;border-color:#dce8d8}
+.modal-price,.cart-total strong{color:#213b24}
+.size{background:#fff;color:#25402b!important;border-color:#d5e4d0}
+.size.active{background:#c0f16e!important;color:#1c3318!important;border-color:#c0f16e!important}
+.quantity-control{border-color:#dce8da}
+.search-overlay{background:rgba(255,255,255,.98)!important;color:#213624}
+.search-container input{background:transparent!important;color:#1d3521!important;border-color:#b7cdb0}
+.search-result{color:#234028;border-color:#dce8dc}
+.search-result:hover{color:#568839}
+.lobi-promo-banner{background:#fff;border-color:#e2ebdd}
+.lobi-promo-banner.lobi-file-theme-banner .lobi-promo-button{background:rgba(19,34,20,.66);color:#fff}
+::selection{background:#c0f16e;color:#1b2e17}
